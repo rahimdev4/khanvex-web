@@ -2296,17 +2296,152 @@ h3 {
 
 /* Step 4: GemFit product presentation */
 .app-grid-single {
-  grid-template-columns: minmax(0, 760px);
+  grid-template-columns: minmax(0, 1180px);
+  justify-content: center;
+}
+
+.app-grid-single .app-card {
+  border-color: color-mix(in srgb, var(--app-accent) 18%, var(--border));
+  border-radius: 34px;
+  box-shadow: 0 28px 70px rgba(59, 83, 47, 0.1);
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(340px, 0.8fr);
+  min-height: 620px;
 }
 
 .app-card-preview {
   background:
-    radial-gradient(circle at 50% 52%, color-mix(in srgb, var(--app-accent) 13%, transparent), transparent 38%),
-    var(--app-accent-tint);
+    radial-gradient(circle at 50% 48%, color-mix(in srgb, var(--app-accent) 18%, transparent), transparent 34%),
+    linear-gradient(145deg, #ffffff, color-mix(in srgb, var(--app-accent-tint) 88%, white));
+  border-color: color-mix(in srgb, var(--app-accent) 18%, #dfe9d7);
 }
 
-.app-card-preview img {
-  filter: drop-shadow(0 22px 30px rgba(21, 35, 59, 0.16));
+.app-grid-single .app-card-preview {
+  aspect-ratio: auto;
+  border-right: 1px solid color-mix(in srgb, var(--app-accent) 15%, #dfe9d7);
+  min-height: 620px;
+}
+
+.app-card-preview-glow {
+  background: color-mix(in srgb, var(--app-accent) 18%, transparent);
+  border-radius: 50%;
+  filter: blur(18px);
+  height: 310px;
+  left: calc(50% - 155px);
+  position: absolute;
+  top: 25%;
+  width: 310px;
+}
+
+.app-card-preview-label {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 18%, #dfe9d7);
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--app-accent) 48%, #36500e);
+  display: inline-flex;
+  font-size: 0.68rem;
+  font-weight: 720;
+  left: 24px;
+  letter-spacing: 0.06em;
+  padding: 9px 12px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 24px;
+  z-index: 5;
+}
+
+.product-phone.app-card-phone {
+  border-radius: 26px;
+  border-width: 5px;
+  position: absolute;
+}
+
+.app-card-phone-left {
+  left: 7%;
+  top: 20%;
+  transform: rotate(-7deg);
+  width: min(31%, 132px);
+  z-index: 1;
+}
+
+.app-card-phone-right {
+  right: 7%;
+  top: 17%;
+  transform: rotate(7deg);
+  width: min(32%, 138px);
+  z-index: 2;
+}
+
+.app-card-phone-primary {
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  width: min(38%, 160px);
+  z-index: 3;
+}
+
+.app-grid-single .app-card-phone-left {
+  left: 9%;
+  top: 19%;
+  width: 185px;
+}
+
+.app-grid-single .app-card-phone-right {
+  right: 9%;
+  top: 16%;
+  width: 190px;
+}
+
+.app-grid-single .app-card-phone-primary {
+  top: 9%;
+  width: 220px;
+}
+
+.app-card-preview .product-phone img {
+  filter: none;
+  padding: 0;
+}
+
+.app-grid-single .app-card-body {
+  justify-content: center;
+  padding: clamp(36px, 4vw, 54px);
+}
+
+.app-card-body > .app-card-status {
+  margin: 24px 0 0;
+}
+
+.app-card-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+}
+
+.app-card-benefits li {
+  background: var(--app-accent-tint);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 18%, white);
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--app-accent) 46%, #36500e);
+  font-size: 0.69rem;
+  font-weight: 680;
+  padding: 8px 11px;
+}
+
+.app-card .app-card-cta {
+  align-self: flex-start;
+  background: var(--app-accent);
+  border-color: var(--app-accent);
+  color: #142006;
+  margin-top: 0;
+}
+
+.app-card .app-card-cta:hover {
+  background: color-mix(in srgb, var(--app-accent) 84%, #eaffb9);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--app-accent) 24%, transparent);
 }
 
 .product-status {
@@ -3086,6 +3221,33 @@ h3 {
 }
 
 @media (max-width: 980px) {
+  .app-grid-single .app-card {
+    grid-template-columns: 1fr;
+  }
+
+  .app-grid-single .app-card-preview {
+    border-bottom: 1px solid color-mix(in srgb, var(--app-accent) 15%, #dfe9d7);
+    border-right: 0;
+    min-height: 560px;
+  }
+
+  .app-grid-single .app-card-phone-left {
+    left: 12%;
+    top: 20%;
+    width: 165px;
+  }
+
+  .app-grid-single .app-card-phone-right {
+    right: 12%;
+    top: 17%;
+    width: 170px;
+  }
+
+  .app-grid-single .app-card-phone-primary {
+    top: 8%;
+    width: 200px;
+  }
+
   .product-showcase-reverse .product-phone-pair {
     order: 0;
   }
@@ -3135,6 +3297,40 @@ h3 {
 @media (max-width: 720px) {
   .app-grid-single {
     grid-template-columns: 1fr;
+  }
+
+  .app-grid-single .app-card {
+    border-radius: 26px;
+  }
+
+  .app-grid-single .app-card-preview {
+    min-height: 440px;
+  }
+
+  .app-grid-single .app-card-phone-left {
+    left: 4%;
+    top: 24%;
+    width: 125px;
+  }
+
+  .app-grid-single .app-card-phone-right {
+    right: 4%;
+    top: 21%;
+    width: 130px;
+  }
+
+  .app-grid-single .app-card-phone-primary {
+    top: 12%;
+    width: 155px;
+  }
+
+  .app-card-preview-label {
+    left: 18px;
+    top: 18px;
+  }
+
+  .app-grid-single .app-card-body {
+    padding: 30px 24px;
   }
 
   .product-phone-pair,
