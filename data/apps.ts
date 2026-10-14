@@ -61,6 +61,7 @@ export type AppEntry = {
   benefits: readonly string[];
   faqs: readonly AppFaq[];
   supportEmail: string;
+  supportEmailVerified: boolean;
   privacyPolicy?: AppPrivacyPolicy;
   accountDeletion?: AccountDeletionGuide;
 };
@@ -80,6 +81,7 @@ function hasApprovedPublicContent(app: AppEntry) {
     app.features.length > 0 &&
     app.benefits.length > 0 &&
     app.faqs.length > 0 &&
+    app.supportEmailVerified &&
     Boolean(app.privacyPolicy)
   );
 }

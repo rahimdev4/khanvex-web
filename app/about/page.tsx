@@ -4,44 +4,41 @@ import { PageHero } from "@/components/page-hero";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn how Khanvex approaches useful, clear, and responsible app design.",
+  description: "Khanvex is a publishing brand for focused mobile applications.",
   alternates: { canonical: "/about" },
 };
 
-const values = [
-  ["01", "Useful over noisy", "A product should solve its chosen problem without competing for more attention than it needs."],
-  ["02", "Clarity over cleverness", "Good interfaces explain themselves. We use familiar patterns, direct language, and visible choices."],
-  ["03", "Care over shortcuts", "Accessibility, privacy, reliability, and support belong in the product—not on a someday list."],
-  ["04", "Progress over novelty", "We improve what matters through observation and iteration, not features added for their own sake."],
+const publishingStandards = [
+  ["01", "Purpose", "A product should address a clear use case and explain it in plain language."],
+  ["02", "Presentation", "Public pages should use real product screens, accurate descriptions, and official links."],
+  ["03", "Accessibility", "Navigation, content, and controls should work across devices and input methods."],
+  ["04", "Accountability", "Support and privacy information should be easy to find for every released app."],
 ] as const;
 
 export default function AboutPage() {
   return (
     <>
-      <PageHero eyebrow="About Khanvex" title="We make digital tools feel human-sized.">
+      <PageHero eyebrow="About Khanvex" title="A publishing home for focused mobile apps.">
         <p>
-          Khanvex is an independent app studio focused on calm, capable mobile
-          experiences for everyday life.
+          Khanvex brings mobile applications together under one clear company
+          identity, with consistent product information and support.
         </p>
       </PageHero>
 
       <section className="section page-section">
-        <div className="shell editorial-grid">
+        <div className="shell editorial-grid about-editorial">
           <div className="sticky-label">
-            <p className="eyebrow">Our point of view</p>
+            <p className="eyebrow">What we do</p>
           </div>
           <div className="editorial-copy">
-            <h2>Useful software does not need to feel complicated.</h2>
+            <h2>We publish and present mobile applications.</h2>
             <p>
-              We believe care is visible: in the label that removes doubt, the
-              flow that takes one fewer step, and the setting that puts a person
-              in control. Khanvex exists to build products with that standard
-              from the beginning.
+              The Khanvex website is the central place to understand each app,
+              view approved screenshots, find official download links, and reach support.
             </p>
             <p>
-              Our portfolio is deliberately focused. Each app should have a
-              clear purpose, an understandable business model, and a support
-              path that remains available after download.
+              The portfolio is intentionally selective. An application is listed
+              only when its public content, store availability, and required disclosures are ready.
             </p>
           </div>
         </div>
@@ -50,11 +47,11 @@ export default function AboutPage() {
       <section className="section soft-section">
         <div className="shell">
           <div className="section-heading compact-heading">
-            <p className="eyebrow">What guides us</p>
-            <h2>Four practical principles.</h2>
+            <p className="eyebrow">Publishing standard</p>
+            <h2>Clear information at every stage.</h2>
           </div>
           <div className="value-grid">
-            {values.map(([number, title, copy]) => (
+            {publishingStandards.map(([number, title, copy]) => (
               <article className="value-card" key={number}>
                 <span>{number}</span>
                 <h3>{title}</h3>

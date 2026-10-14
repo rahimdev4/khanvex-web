@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowIcon } from "@/components/arrow-icon";
 import { PageHero } from "@/components/page-hero";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact Khanvex about products, partnerships, press, or general questions.",
+  description: "Contact information and enquiry guidance for Khanvex.",
   alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
   return (
     <>
-      <PageHero eyebrow="Contact" title="Start with a clear note. We will take it from there.">
+      <PageHero eyebrow="Contact" title="Contact Khanvex.">
         <p>
-          For partnerships, product feedback, press, or general questions,
-          reach Khanvex directly by email.
+          Use this page for company enquiries, product feedback, or publishing questions.
+          Product support has a separate route.
         </p>
       </PageHero>
 
@@ -25,18 +26,27 @@ export default function ContactPage() {
             <p className="eyebrow">General enquiries</p>
             <h2>{siteConfig.contactEmail}</h2>
             <p>
-              A useful first message includes your name, what you are contacting
-              us about, and any relevant deadline or link.
+              Include your name, the reason for contacting Khanvex, and any
+              relevant link or deadline. Do not send passwords or payment details.
             </p>
+            {!siteConfig.contactEmailVerified ? (
+              <p className="channel-status">Email delivery for this planned address has not been verified yet.</p>
+            ) : null}
           </div>
-          <a className="button button-large" href={`mailto:${siteConfig.contactEmail}`}>
-            Write an email <ArrowIcon />
-          </a>
+          {siteConfig.contactEmailVerified ? (
+            <a className="button button-large" href={`mailto:${siteConfig.contactEmail}`}>
+              Write an email <ArrowIcon />
+            </a>
+          ) : (
+            <span className="button button-large button-disabled" aria-disabled="true">
+              Email setup pending
+            </span>
+          )}
         </div>
         <div className="shell contact-note">
           <span aria-hidden="true">i</span>
           <p>
-            Need help with a Khanvex app? Email <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a> so your message reaches the right queue.
+            Looking for product help? Visit <Link href="/support">Khanvex Support</Link> for the correct route.
           </p>
         </div>
       </section>
