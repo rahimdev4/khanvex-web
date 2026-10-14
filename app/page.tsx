@@ -76,12 +76,12 @@ export default function HomePage() {
         <div className="shell">
           <div className="section-heading collection-heading">
             <div>
-              <p className="eyebrow">Product collection</p>
-              <h2 id="products-heading">Made ready for real applications.</h2>
+              <p className="eyebrow">Featured application</p>
+              <h2 id="products-heading">Meet GemFit.</h2>
             </div>
             <p>
-              The showcase supports distinct app identities while keeping the
-              Khanvex publishing experience consistent.
+              A first look at Khanvex&apos;s Android fitness app, presented with its
+              real interface and a clear pre-release status.
             </p>
           </div>
 
@@ -104,9 +104,13 @@ export default function HomePage() {
           )}
 
           <div className="collection-action">
-            <p>No applications are publicly listed yet.</p>
+            <p>
+              {featuredApps.length > 0
+                ? "GemFit is preparing for Google Play."
+                : "No applications are publicly listed yet."}
+            </p>
             <Link className="text-link" href="/apps">
-              View portfolio status <ArrowIcon />
+              View all apps <ArrowIcon />
             </Link>
           </div>
         </div>

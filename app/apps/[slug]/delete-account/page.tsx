@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPublishedApp, publishedApps } from "@/data/apps";
+import { getPublicApp, publicApps } from "@/data/apps";
 
 type DeleteAccountPageProps = {
   params: Promise<{ slug: string }>;
@@ -9,14 +9,14 @@ type DeleteAccountPageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return publishedApps
+  return publicApps
     .filter((app) => app.accountDeletion)
     .map((app) => ({ slug: app.slug }));
 }
 
 export async function generateMetadata({ params }: DeleteAccountPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const app = getPublishedApp(slug);
+  const app = getPublicApp(slug);
   if (!app?.accountDeletion) return { title: "Instructions not found", robots: { index: false } };
 
   return {
@@ -29,17 +29,24 @@ export async function generateMetadata({ params }: DeleteAccountPageProps): Prom
 
 export default async function DeleteAccountPage({ params }: DeleteAccountPageProps) {
   const { slug } = await params;
-  const app = getPublishedApp(slug);
+  const app = getPublicApp(slug);
   if (!app?.accountDeletion) notFound();
 
   return (
     <article className="section legal-document shell reading-width">
       <p className="eyebrow">{app.name} support</p>
       <h1>Delete your account</h1>
+      {app.accountDeletion.status === "provisional" ? (
+        <p className="legal-notice">
+          Provisional notice: an operational account-deletion process has not yet been verified.
+        </p>
+      ) : null}
       <p className="legal-introduction">{app.accountDeletion.introduction}</p>
-      <ol className="deletion-steps">
-        {app.accountDeletion.steps.map((step) => <li key={step}>{step}</li>)}
-      </ol>
+      {app.accountDeletion.status === "operational" ? (
+        <ol className="deletion-steps">
+          {app.accountDeletion.steps.map((step) => <li key={step}>{step}</li>)}
+        </ol>
+      ) : null}
       {app.accountDeletion.contactEmail ? (
         <p className="legal-support-note">
           Need help? Email <a href={`mailto:${app.accountDeletion.contactEmail}`}>{app.accountDeletion.contactEmail}</a>.

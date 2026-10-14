@@ -46,7 +46,11 @@ export function AppCard({ app }: AppCardProps) {
         <p>{app.summary}</p>
         <div className="app-card-meta">
           <span>{app.platforms.join(" · ")}</span>
-          <span>{app.storeLinks.map((link) => link.store).join(" · ")}</span>
+          <span>
+            {app.storeLinks.length > 0
+              ? app.storeLinks.map((link) => link.store).join(" · ")
+              : "Preparing for Google Play"}
+          </span>
         </div>
         <Link className="text-link" href={`/apps/${app.slug}`}>
           View details <ArrowIcon />

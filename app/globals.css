@@ -2293,3 +2293,335 @@ h3 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Step 4: GemFit product presentation */
+.app-grid-single {
+  grid-template-columns: minmax(0, 760px);
+}
+
+.app-card-preview {
+  background:
+    radial-gradient(circle at 50% 52%, color-mix(in srgb, var(--app-accent) 13%, transparent), transparent 38%),
+    var(--app-accent-tint);
+}
+
+.app-card-preview img {
+  filter: drop-shadow(0 22px 30px rgba(21, 35, 59, 0.16));
+}
+
+.product-status {
+  align-items: center;
+  background: var(--app-accent-tint);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 24%, white);
+  border-radius: 999px;
+  color: #4c6720;
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 680;
+  gap: 9px;
+  letter-spacing: 0.025em;
+  margin-top: 26px;
+  padding: 8px 12px;
+}
+
+.app-detail .app-category,
+.product-showcase .app-category,
+.app-card .app-category,
+.feature-number,
+.capability-card span {
+  color: color-mix(in srgb, var(--app-accent) 48%, #2f4a09);
+}
+
+.product-status span {
+  background: var(--app-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--app-accent) 14%, transparent);
+  height: 7px;
+  width: 7px;
+}
+
+.product-showcase-copy .product-status + h3 {
+  margin-top: 22px;
+}
+
+.product-phone-pair {
+  background:
+    radial-gradient(circle at 58% 42%, color-mix(in srgb, var(--app-accent) 16%, transparent), transparent 32%),
+    linear-gradient(145deg, var(--app-accent-tint), white 82%);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 18%, white);
+  border-radius: 32px;
+  min-height: 620px;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-phone-glow {
+  background: color-mix(in srgb, var(--app-accent) 24%, transparent);
+  border-radius: 50%;
+  filter: blur(18px);
+  height: 300px;
+  left: calc(50% - 150px);
+  position: absolute;
+  top: 24%;
+  width: 300px;
+}
+
+.product-phone {
+  background: #0a1323;
+  border: 7px solid #101b2f;
+  border-radius: 36px;
+  box-shadow: 0 28px 58px rgba(21, 35, 59, 0.22);
+  line-height: 0;
+  overflow: hidden;
+}
+
+.product-phone img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.product-phone-pair > .product-phone {
+  position: absolute;
+  transition: transform 220ms ease;
+}
+
+.product-phone-primary {
+  left: 17%;
+  top: 6%;
+  width: min(43%, 300px);
+  z-index: 2;
+}
+
+.product-phone-secondary {
+  right: 11%;
+  top: 12%;
+  transform: rotate(8deg);
+  width: min(38%, 265px);
+}
+
+.product-phone-pair:hover .product-phone-primary {
+  transform: translateY(-4px);
+}
+
+.product-phone-pair:hover .product-phone-secondary {
+  transform: rotate(6deg) translate(2px, -2px);
+}
+
+.product-showcase-reverse .product-phone-pair {
+  order: 2;
+}
+
+.product-status-large {
+  margin: 0 0 24px;
+}
+
+.product-hero .product-phone-pair {
+  min-height: 660px;
+}
+
+.product-hero-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 22px;
+}
+
+.product-hero-actions > p {
+  color: var(--muted);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  max-width: 280px;
+}
+
+.product-overview {
+  background: var(--section);
+  border-bottom: 1px solid var(--border);
+}
+
+.capability-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 52px;
+}
+
+.capability-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  min-height: 190px;
+  padding: 25px;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.capability-card:hover {
+  border-color: color-mix(in srgb, var(--app-accent) 34%, var(--border));
+  box-shadow: 0 16px 38px rgba(21, 35, 59, 0.07);
+  transform: translateY(-3px);
+}
+
+.capability-card span {
+  color: var(--app-accent);
+  font-size: 0.72rem;
+  font-weight: 720;
+  letter-spacing: 0.11em;
+}
+
+.capability-card p {
+  color: var(--heading);
+  font-size: 0.92rem;
+  font-weight: 590;
+  line-height: 1.55;
+  margin-top: 42px;
+}
+
+.feature-copy {
+  max-width: 520px;
+}
+
+.app-screenshot-frame {
+  background: #0a1323;
+  line-height: 0;
+  max-height: none;
+}
+
+.app-media-compact {
+  min-height: 600px;
+}
+
+.app-media-compact .app-screenshot-frame {
+  max-height: none;
+  width: min(58%, 240px);
+}
+
+.screenshot-section {
+  background: var(--page);
+  border-top: 1px solid var(--border);
+}
+
+.screenshot-heading {
+  align-items: end;
+  display: flex;
+  justify-content: space-between;
+  max-width: none;
+}
+
+.screenshot-heading > p {
+  color: var(--muted);
+  font-size: 0.84rem;
+  max-width: 250px;
+}
+
+.screenshot-gallery {
+  scrollbar-color: var(--blue-soft) transparent;
+  scrollbar-width: thin;
+}
+
+.gallery-frame {
+  background: white;
+  box-shadow: 0 20px 48px rgba(21, 35, 59, 0.08);
+  flex-basis: min(28%, 330px);
+}
+
+.product-download-card > div > p:not(.eyebrow) {
+  margin-top: 16px;
+  max-width: 650px;
+}
+
+.legal-document > .legal-notice {
+  margin-top: 28px;
+}
+
+@media (max-width: 1180px) {
+  .capability-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .product-showcase-reverse .product-phone-pair {
+    order: 0;
+  }
+
+  .product-phone-pair,
+  .product-hero .product-phone-pair {
+    min-height: 610px;
+  }
+
+  .product-phone-primary {
+    left: 25%;
+  }
+
+  .product-phone-secondary {
+    right: 18%;
+  }
+
+  .capability-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .app-grid-single {
+    grid-template-columns: 1fr;
+  }
+
+  .product-phone-pair,
+  .product-hero .product-phone-pair {
+    border-radius: 24px;
+    min-height: 480px;
+  }
+
+  .product-phone {
+    border-width: 5px;
+    border-radius: 28px;
+  }
+
+  .product-phone-primary {
+    left: 10%;
+    top: 7%;
+    width: 49%;
+  }
+
+  .product-phone-secondary {
+    right: 7%;
+    top: 14%;
+    width: 43%;
+  }
+
+  .product-status-large {
+    margin-bottom: 20px;
+  }
+
+  .product-hero-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .app-media-compact {
+    min-height: 540px;
+  }
+
+  .capability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capability-card {
+    min-height: 0;
+  }
+
+  .capability-card p {
+    margin-top: 28px;
+  }
+
+  .screenshot-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .gallery-frame {
+    flex-basis: 72%;
+  }
+}
