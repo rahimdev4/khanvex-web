@@ -2764,15 +2764,41 @@ h3 {
 
 .app-media-compact {
   background:
-    radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--app-accent) 24%, transparent), transparent 34%),
-    linear-gradient(145deg, #111d18 0%, #08110d 55%, #0b1422 100%);
-  border-color: color-mix(in srgb, var(--app-accent) 22%, #1e2b2a);
+    radial-gradient(circle at 50% 48%, color-mix(in srgb, var(--app-accent) 18%, transparent), transparent 34%),
+    linear-gradient(145deg, #fbfdf8 0%, color-mix(in srgb, var(--app-accent-tint) 88%, white) 100%);
+  border-color: color-mix(in srgb, var(--app-accent) 20%, #dfe9d7);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.68),
+    0 18px 46px rgba(59, 83, 47, 0.07);
   min-height: 535px;
+  padding: 32px;
+}
+
+.app-media-compact::after {
+  background: color-mix(in srgb, var(--app-accent) 18%, transparent);
+  border-radius: 50%;
+  bottom: 26px;
+  content: "";
+  filter: blur(14px);
+  height: 34px;
+  position: absolute;
+  width: 190px;
+}
+
+.app-media-compact .app-media-halo {
+  background: color-mix(in srgb, var(--app-accent) 16%, transparent);
+  filter: blur(12px);
+  height: 290px;
+  width: 290px;
 }
 
 .app-media-compact .app-screenshot-frame {
+  border-color: #15233b;
+  border-radius: 32px;
+  border-width: 6px;
+  box-shadow: 0 26px 54px rgba(21, 35, 59, 0.24);
   max-height: none;
-  width: min(61%, 252px);
+  width: clamp(176px, 52%, 214px);
 }
 
 .screenshot-section {
@@ -2949,7 +2975,8 @@ h3 {
   }
 
   .app-media-compact {
-    min-height: 480px;
+    min-height: 460px;
+    padding: 24px;
   }
 
   .product-overview-panel,

@@ -34,7 +34,7 @@ export function AppMedia({
         className="app-screenshot-frame"
         priority={priority}
         screenshot={screenshot}
-        sizes={compact ? "(max-width: 720px) 68vw, 310px" : "(max-width: 980px) 66vw, 420px"}
+        sizes={compact ? "(max-width: 720px) 190px, 220px" : "(max-width: 980px) 66vw, 420px"}
       />
     </div>
   );
