@@ -2452,11 +2452,11 @@ h3 {
 
 .product-overview-panel {
   background:
-    radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--app-accent) 20%, transparent), transparent 30%),
-    linear-gradient(145deg, #101b18 0%, #0b1520 62%, #101a2b 100%);
-  border: 1px solid color-mix(in srgb, var(--app-accent) 18%, #263549);
+    radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--app-accent) 14%, transparent), transparent 31%),
+    linear-gradient(145deg, #ffffff 0%, color-mix(in srgb, var(--app-accent-tint) 88%, white) 100%);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 20%, #dfe9d7);
   border-radius: 38px;
-  box-shadow: 0 34px 80px rgba(12, 24, 38, 0.18);
+  box-shadow: 0 30px 72px rgba(59, 83, 47, 0.1);
   overflow: hidden;
   padding: clamp(38px, 5vw, 72px);
   position: relative;
@@ -2485,15 +2485,15 @@ h3 {
 }
 
 .product-overview-panel .eyebrow {
-  color: var(--app-accent);
+  color: color-mix(in srgb, var(--app-accent) 46%, #36500e);
 }
 
 .product-overview-panel h2 {
-  color: white;
+  color: var(--heading);
 }
 
 .product-overview-note {
-  color: rgba(229, 237, 231, 0.68);
+  color: var(--body);
   font-size: 0.92rem;
   max-width: 390px;
 }
@@ -2510,10 +2510,11 @@ h3 {
 .overview-workout-visual {
   align-items: flex-end;
   background:
-    radial-gradient(circle at 50% 58%, color-mix(in srgb, var(--app-accent) 24%, transparent), transparent 35%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
-  border: 1px solid rgba(255, 255, 255, 0.11);
+    radial-gradient(circle at 50% 58%, color-mix(in srgb, var(--app-accent) 18%, transparent), transparent 36%),
+    linear-gradient(145deg, #ffffff, color-mix(in srgb, var(--app-accent-tint) 78%, white));
+  border: 1px solid color-mix(in srgb, var(--app-accent) 18%, #dfe9d7);
   border-radius: 28px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.74);
   display: flex;
   justify-content: center;
   min-height: 548px;
@@ -2535,7 +2536,7 @@ h3 {
 }
 
 .overview-visual-heading span {
-  color: var(--app-accent);
+  color: color-mix(in srgb, var(--app-accent) 48%, #36500e);
   font-size: 0.67rem;
   font-weight: 740;
   letter-spacing: 0.11em;
@@ -2543,7 +2544,7 @@ h3 {
 }
 
 .overview-visual-heading strong {
-  color: white;
+  color: var(--heading);
   font-size: 0.94rem;
   margin-top: 7px;
 }
@@ -2561,10 +2562,11 @@ h3 {
 .overview-chip {
   align-items: center;
   backdrop-filter: blur(12px);
-  background: rgba(18, 30, 27, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 22%, #d9e5d2);
   border-radius: 999px;
-  color: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 10px 26px rgba(41, 66, 32, 0.12);
+  color: var(--heading);
   display: inline-flex;
   font-size: 0.67rem;
   font-weight: 650;
@@ -2615,8 +2617,8 @@ h3 {
 
 .capability-card {
   align-items: center;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 16%, #dfe8da);
   border-radius: 20px;
   display: grid;
   gap: 18px;
@@ -2628,8 +2630,8 @@ h3 {
 }
 
 .capability-card:hover {
-  border-color: color-mix(in srgb, var(--app-accent) 46%, rgba(255, 255, 255, 0.12));
-  box-shadow: 0 20px 46px rgba(4, 10, 16, 0.24);
+  border-color: color-mix(in srgb, var(--app-accent) 52%, #dfe8da);
+  box-shadow: 0 18px 40px rgba(59, 83, 47, 0.1);
   transform: translateY(-3px);
 }
 
@@ -2652,20 +2654,20 @@ h3 {
 }
 
 .capability-card .capability-number {
-  color: rgba(255, 255, 255, 0.44);
+  color: color-mix(in srgb, var(--app-accent) 38%, #657451);
   font-size: 0.72rem;
   font-weight: 720;
   letter-spacing: 0.11em;
 }
 
 .capability-copy h3 {
-  color: white;
+  color: var(--heading);
   font-size: 1rem;
   letter-spacing: -0.015em;
 }
 
 .capability-copy p {
-  color: rgba(229, 237, 231, 0.64);
+  color: var(--body);
   font-size: 0.78rem;
   line-height: 1.55;
   margin-top: 5px;
@@ -2821,11 +2823,11 @@ h3 {
 
 .screenshot-showcase {
   background:
-    radial-gradient(circle at 90% 3%, color-mix(in srgb, var(--app-accent) 18%, transparent), transparent 25%),
-    linear-gradient(145deg, #111b19 0%, #09131d 72%, #111c2d 100%);
-  border: 1px solid color-mix(in srgb, var(--app-accent) 18%, #26354b);
+    radial-gradient(circle at 90% 3%, color-mix(in srgb, var(--app-accent) 14%, transparent), transparent 27%),
+    linear-gradient(145deg, #ffffff 0%, color-mix(in srgb, var(--app-accent-tint) 88%, white) 100%);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 20%, #dfe9d7);
   border-radius: 38px;
-  box-shadow: 0 32px 70px rgba(16, 29, 43, 0.16);
+  box-shadow: 0 30px 72px rgba(59, 83, 47, 0.1);
   margin-top: 52px;
   overflow: hidden;
   padding: clamp(28px, 4vw, 52px);
@@ -2847,22 +2849,22 @@ h3 {
 
 .gallery-frame {
   background: #050b09;
-  border: 6px solid #17251e;
+  border: 5px solid #15233b;
   border-radius: 30px;
-  box-shadow: 0 24px 46px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 22px 44px rgba(21, 35, 59, 0.2);
   overflow: hidden;
   padding: 0;
   transition: border-color 180ms ease, transform 180ms ease;
 }
 
 .gallery-item:hover .gallery-frame {
-  border-color: color-mix(in srgb, var(--app-accent) 42%, #17251e);
+  border-color: color-mix(in srgb, var(--app-accent) 44%, #15233b);
   transform: translateY(-4px);
 }
 
 .gallery-item figcaption {
   align-items: center;
-  color: rgba(238, 244, 240, 0.75);
+  color: var(--heading);
   display: flex;
   font-size: 0.76rem;
   font-weight: 620;
@@ -2871,7 +2873,7 @@ h3 {
 }
 
 .gallery-item figcaption span {
-  color: var(--app-accent);
+  color: color-mix(in srgb, var(--app-accent) 48%, #36500e);
   font-size: 0.67rem;
   letter-spacing: 0.1em;
 }
@@ -2879,6 +2881,34 @@ h3 {
 .product-download-card > div > p:not(.eyebrow) {
   margin-top: 16px;
   max-width: 650px;
+}
+
+.app-detail .product-download-card {
+  background:
+    radial-gradient(circle at 88% 0%, color-mix(in srgb, var(--app-accent) 14%, transparent), transparent 30%),
+    linear-gradient(145deg, #ffffff, color-mix(in srgb, var(--app-accent-tint) 88%, white));
+  border: 1px solid color-mix(in srgb, var(--app-accent) 20%, #dfe9d7);
+  box-shadow: 0 26px 62px rgba(59, 83, 47, 0.1);
+  color: var(--body);
+}
+
+.app-detail .product-download-card .eyebrow {
+  color: color-mix(in srgb, var(--app-accent) 48%, #36500e);
+}
+
+.app-detail .product-download-card h2 {
+  color: var(--heading);
+}
+
+.app-detail .product-download-card .button-light {
+  background: var(--app-accent);
+  border-color: var(--app-accent);
+  color: #142006;
+}
+
+.app-detail .product-download-card .button-light:hover {
+  background: color-mix(in srgb, var(--app-accent) 84%, #eaffb9);
+  color: #142006;
 }
 
 .legal-document > .legal-notice {
