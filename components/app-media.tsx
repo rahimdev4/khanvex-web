@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { CSSProperties } from "react";
+import { ProductPhone } from "@/components/product-phone";
 import type { AppAsset } from "@/data/apps";
 
 type AppMediaProps = {
@@ -30,16 +30,12 @@ export function AppMedia({
   return (
     <div className={`app-media${compact ? " app-media-compact" : ""}`} style={style}>
       <div className="app-media-halo" />
-      <div className="app-screenshot-frame">
-        <Image
-          alt={screenshot.alt}
-          height={screenshot.height}
-          priority={priority}
-          sizes={compact ? "(max-width: 720px) 72vw, 320px" : "(max-width: 980px) 72vw, 460px"}
-          src={screenshot.src}
-          width={screenshot.width}
-        />
-      </div>
+      <ProductPhone
+        className="app-screenshot-frame"
+        priority={priority}
+        screenshot={screenshot}
+        sizes={compact ? "(max-width: 720px) 190px, 220px" : "(max-width: 980px) 66vw, 420px"}
+      />
     </div>
   );
 }

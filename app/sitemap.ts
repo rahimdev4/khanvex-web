@@ -1,16 +1,14 @@
 import type { MetadataRoute } from "next";
-import { publishedApps } from "@/data/apps";
+import { publicApps, publishedApps } from "@/data/apps";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const companyRoutes = ["", "/about", "/support", "/contact"];
-  const productRoutes = publishedApps.flatMap((app) => [
-    `/apps/${app.slug}`,
-    `/apps/${app.slug}/privacy-policy`,
-  ]);
-  const routes = publishedApps.length > 0
-    ? [...companyRoutes, "/apps", ...productRoutes]
-    : companyRoutes;
+  const productRoutes = publishedApps.map((app) => `/apps/${app.slug}`);
+  const policyRoutes = publicApps
+    .filter((app) => app.privacyPolicy?.status === "final")
+    .map((app) => `/apps/${app.slug}/privacy-policy`);
+  const routes = [...companyRoutes, ...productRoutes, ...policyRoutes];
 
   return routes.map((route) => ({
     url: `${siteConfig.url}${route}`,

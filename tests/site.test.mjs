@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import { test } from "node:test";
 import { URL } from "node:url";
 
-const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+const fileUrl = (path) => new URL(`../${path}`, import.meta.url);
+const read = (path) => readFileSync(fileUrl(path), "utf8");
 
 test("production domain is configured consistently", () => {
   const site = read("lib/site.ts");
@@ -11,14 +12,18 @@ test("production domain is configured consistently", () => {
   assert.doesNotMatch(site, /localhost|example\.com/);
 });
 
-test("unverified products are not presented as published apps", () => {
+test("GemFit is an approved public preview without being marked as released", () => {
   const registry = read("data/apps.ts");
-  assert.match(registry, /appRegistry:[^=]+\[\]/s);
+  assert.match(registry, /slug: "gemfit"/);
+  assert.match(registry, /status: "pre-release"/);
+  assert.match(registry, /publicContentApproved: true/);
+  assert.match(registry, /storeListingStatus: "unavailable"/);
+  assert.match(registry, /legalStatus: "provisional"/);
+  assert.match(registry, /storeLinks: \[\]/);
+  assert.match(registry, /publicApps = appRegistry\.filter/);
   assert.match(registry, /status === "published"/);
-  assert.match(registry, /publicContentApproved/);
-  assert.match(registry, /screenshots\.length > 0/);
-  assert.match(registry, /storeLinks\.length > 0/);
-  assert.match(registry, /supportEmailVerified/);
+  assert.match(registry, /publishedApps = publicApps\.filter/);
+  assert.doesNotMatch(registry, /play\.google\.com/);
 });
 
 test("provisional legal content and apps are excluded from indexing", () => {
@@ -43,17 +48,75 @@ test("the reusable application route family is present", () => {
   }
 });
 
-test("product pages are generated only from the published registry", () => {
+test("approved pre-release products receive public routes while unknown apps remain excluded", () => {
   const detailPage = read("app/apps/[slug]/page.tsx");
-  assert.match(detailPage, /publishedApps\.map/);
-  assert.match(detailPage, /getPublishedApp\(slug\)/);
+  assert.match(detailPage, /publicApps\.map/);
+  assert.match(detailPage, /getPublicApp\(slug\)/);
   assert.match(detailPage, /if \(!app\) notFound\(\)/);
+  assert.match(detailPage, /dynamicParams = false/);
 });
 
-test("sitemap derives product routes from approved published apps", () => {
+test("all approved GemFit WebP assets are present", () => {
+  const assets = [
+    "gemfit-icon.webp",
+    "gemfit-home.webp",
+    "gemfit-workouts.webp",
+    "gemfit-workout-details.webp",
+    "gemfit-exercise-video.webp",
+    "gemfit-plan.webp",
+    "gemfit-active-workout.webp",
+    "gemfit-progress.webp",
+    "gemfit-profile.webp",
+  ];
+
+  for (const asset of assets) {
+    assert.ok(statSync(fileUrl(`public/apps/gemfit/${asset}`)).size > 0, `${asset} should not be empty`);
+  }
+});
+
+test("GemFit homepage, listing, and landing page use approved product content", () => {
+  assert.match(read("app/page.tsx"), /Meet GemFit/);
+  assert.match(read("app/apps/page.tsx"), /publicApps/);
+  const detailPage = read("app/apps/[slug]/page.tsx");
+  assert.match(detailPage, /ProductPhonePair/);
+  assert.match(detailPage, /app\.screenshots\.map/);
+  assert.match(detailPage, /GemFit is preparing for Google Play/);
+});
+
+test("GemFit metadata is canonical, pre-release safe, and structured", () => {
+  const detailPage = read("app/apps/[slug]/page.tsx");
+  assert.match(detailPage, /alternates: \{ canonical: `\/apps\/\$\{app\.slug\}` \}/);
+  assert.match(detailPage, /index: false/);
+  assert.match(detailPage, /SoftwareApplication/);
+  assert.match(detailPage, /HealthApplication/);
+  assert.match(detailPage, /replace\(\/<\/g, "\\\\u003c"\)/);
+  assert.doesNotMatch(detailPage, /aggregateRating|ratingValue|offers:/);
+});
+
+test("GemFit privacy and deletion disclosures are final, public, and anchored", () => {
+  const registry = read("data/apps.ts");
+  const privacy = read("app/apps/[slug]/privacy-policy/page.tsx");
+  const deletion = read("app/apps/[slug]/delete-account/page.tsx");
+  assert.match(registry, /privacyPolicy: \{\s+status: "final"/s);
+  assert.match(registry, /effectiveDate: "15 October 2026"/);
+  assert.match(registry, /publisherName: "khanvex"/);
+  assert.match(registry, /jurisdiction: "Pakistan"/);
+  assert.match(registry, /minimumUserAge: 15/);
+  assert.match(registry, /supportEmailVerified: true/);
+  assert.match(registry, /accountDeletion: \{\s+status: "operational"/s);
+  assert.match(privacy, /\? \{ index: true, follow: true \}/);
+  assert.match(privacy, /id="account-deletion"/);
+  assert.match(privacy, /Delete your GemFit account/);
+  assert.match(privacy, /mailto:support@khanvex\.tech\?subject=GemFit%20account%20deletion%20request/);
+  assert.doesNotMatch(privacy, /<EFFECTIVE DATE>|<PLAY DEVELOPER|<COUNTRY OR JURISDICTION>|<MINIMUM USER AGE>|<PROVIDER LOG/);
+  assert.match(deletion, /index: false/);
+  assert.match(deletion, /status === "operational"/);
+});
+
+test("sitemap includes released products and final public policies", () => {
   const sitemap = read("app/sitemap.ts");
-  assert.match(sitemap, /publishedApps\.flatMap/);
-  assert.match(sitemap, /publishedApps\.length > 0/);
+  assert.match(sitemap, /publishedApps\.map/);
+  assert.match(sitemap, /privacyPolicy\?\.status === "final"/);
 });
 
 test("unverified email channels are not exposed unconditionally", () => {

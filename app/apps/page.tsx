@@ -5,15 +5,16 @@ import { ArrowIcon } from "@/components/arrow-icon";
 import { Cta } from "@/components/cta";
 import { PageHero } from "@/components/page-hero";
 import { ProductStage } from "@/components/product-stage";
-import { publishedApps } from "@/data/apps";
+import { publicApps, publishedApps } from "@/data/apps";
 
-const hasPublishedApps = publishedApps.length > 0;
+const hasPublicApps = publicApps.length > 0;
+const hasReleasedApps = publishedApps.length > 0;
 
 export const metadata: Metadata = {
   title: "Apps",
   description: "Explore mobile apps published by Khanvex.",
   alternates: { canonical: "/apps" },
-  robots: hasPublishedApps ? { index: true, follow: true } : { index: false, follow: true },
+  robots: hasReleasedApps ? { index: true, follow: true } : { index: false, follow: true },
 };
 
 export default function AppsPage() {
@@ -21,15 +22,15 @@ export default function AppsPage() {
     <>
       <PageHero eyebrow="Khanvex apps" title="Focused apps, presented clearly.">
         <p>
-          This collection will include only released Khanvex products with
-          approved screenshots, official store links, and complete support details.
+          Explore approved Khanvex product previews and released applications.
+          Availability is shown clearly on each product page.
         </p>
       </PageHero>
 
       <section className="section page-section">
         <div className="shell">
-          {hasPublishedApps ? (
-            <AppGrid apps={publishedApps} />
+          {hasPublicApps ? (
+            <AppGrid apps={publicApps} />
           ) : (
             <div className="empty-state refined-empty-state">
               <ProductStage />

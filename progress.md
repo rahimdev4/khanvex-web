@@ -9,7 +9,8 @@
 
 ## Step 3 — UI refinement and product showcase foundation
 
-Status: completed locally; not pushed, merged, or deployed.
+Status: approved checkpoint at `157b14315b720157d048fe7176383e390a06d034`; pushed on
+`feat/website-ui-refinement` with pull request #1 left open and unmerged.
 
 ### Product architecture
 
@@ -45,3 +46,39 @@ Status: completed locally; not pushed, merged, or deployed.
 - Runtime: expected public routes returned 200; unknown app returned 404
 - SEO safeguards: canonical and robots output verified on the live local build
 - Visual browser QA: unavailable in this session; width-specific screenshots could not be captured
+
+## Step 4 — GemFit product integration
+
+Status: completed locally on `feat/gemfit-product-integration`; not pushed, merged, or deployed.
+
+### Product integration
+
+- Added GemFit as an approved public pre-release product without representing it as released.
+- Preserved independent readiness gates for marketing approval, publication, store listing, support, and legal content.
+- Added the official GemFit icon and eight supplied WebP application screens without altering their interface artwork.
+- Added a polished GemFit card to `/apps` and a two-phone featured product presentation to the homepage.
+
+### GemFit landing page
+
+- Added the statically generated `/apps/gemfit` route with a two-phone hero, capability overview, six detailed feature sections, and all eight screenshots.
+- Added concise verified FAQs, pre-release availability messaging, product support/status links, and no fake download action.
+- Added application-specific metadata, canonical URL, app icon metadata, Open Graph/Twitter data, and `SoftwareApplication` JSON-LD without ratings, pricing, or store claims.
+
+### Launch safeguards
+
+- GemFit remains `pre-release`, its store listing remains `unavailable`, and no Google Play URL is present.
+- `/apps/gemfit` and `/apps` remain `noindex` until release readiness is satisfied.
+- GemFit is excluded from the sitemap until it passes the published-product gate.
+- Provisional privacy and account-deletion routes are available but remain explicitly unfinished and `noindex`.
+- Unverified support email is not exposed as an active mail link.
+
+### Validation
+
+- Official assets: nine WebP files verified; icon 1254×1254 and screenshots 841×1870
+- TypeScript: passed
+- ESLint: passed
+- Tests: 13 passed
+- Production build: passed; 16 static/SSG pages generated
+- Runtime: homepage, apps listing, GemFit, privacy, and deletion routes returned 200; unknown app returned 404
+- SEO: canonical, metadata, noindex rules, and JSON-LD presence verified in built output
+- Visual browser QA: unavailable in this session; no desktop/mobile screenshots were captured
