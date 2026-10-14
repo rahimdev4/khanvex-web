@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 import { AppMedia } from "@/components/app-media";
 import { ArrowIcon } from "@/components/arrow-icon";
+import { CapabilityIcon } from "@/components/capability-icon";
 import { ProductPhonePair } from "@/components/product-phone";
 import { StoreLinks } from "@/components/store-links";
 import { getPublicApp, publicApps, publishedApps } from "@/data/apps";
@@ -141,17 +142,27 @@ export default async function AppDetailPage({ params }: AppPageProps) {
 
       <section className="section product-overview" id="features" aria-labelledby="overview-heading">
         <div className="shell">
-          <div className="section-heading compact-heading">
-            <p className="eyebrow">The GemFit experience</p>
-            <h2 id="overview-heading">Your workout flow, kept in one place.</h2>
-          </div>
-          <div className="capability-grid">
-            {app.benefits.map((benefit, index) => (
-              <article className="capability-card" key={benefit}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{benefit}</p>
-              </article>
-            ))}
+          <div className="product-overview-panel">
+            <div className="product-overview-intro">
+              <div className="section-heading compact-heading">
+                <p className="eyebrow">The {app.name} experience</p>
+                <h2 id="overview-heading">Your workout flow, kept in one place.</h2>
+              </div>
+              <p className="product-overview-note">
+                From discovery to completed activity, each step stays connected and easy to follow.
+              </p>
+            </div>
+            <div className="capability-grid">
+              {app.benefits.map((benefit, index) => (
+                <article className="capability-card" key={benefit}>
+                  <div className="capability-card-top">
+                    <span className="capability-icon"><CapabilityIcon index={index} /></span>
+                    <span className="capability-number">{String(index + 1).padStart(2, "0")}</span>
+                  </div>
+                  <p>{benefit}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -160,7 +171,7 @@ export default async function AppDetailPage({ params }: AppPageProps) {
         <div className="shell">
           <div className="section-heading compact-heading">
             <p className="eyebrow">Inside the app</p>
-            <h2 id="features-heading">Explore GemFit in detail.</h2>
+            <h2 id="features-heading">Explore {app.name} in detail.</h2>
           </div>
           <div className="feature-list">
             {app.features.map((feature, index) => {
@@ -174,7 +185,10 @@ export default async function AppDetailPage({ params }: AppPageProps) {
                     screenshot={screenshot}
                   />
                   <div className="feature-copy">
-                    <span className="feature-number">{String(index + 1).padStart(2, "0")}</span>
+                    <div className="feature-label">
+                      <span className="feature-number">{String(index + 1).padStart(2, "0")}</span>
+                      <span>{app.name} capability</span>
+                    </div>
                     <h3>{feature.title}</h3>
                     <p>{feature.description}</p>
                   </div>
@@ -190,27 +204,35 @@ export default async function AppDetailPage({ params }: AppPageProps) {
           <div className="section-heading compact-heading screenshot-heading">
             <div>
               <p className="eyebrow">Product screens</p>
-              <h2 id="screenshots-heading">A closer look at GemFit.</h2>
+              <h2 id="screenshots-heading">A closer look at {app.name}.</h2>
             </div>
-            <p>Scroll to explore all eight approved app screens.</p>
+            <p>Eight approved interface screens, presented in their original artwork.</p>
           </div>
-          <div
-            className="screenshot-gallery"
-            aria-label="GemFit screenshots"
-            role="region"
-            tabIndex={0}
-          >
-            {app.screenshots.map((screenshot) => (
-              <div className="gallery-frame" key={screenshot.src}>
-                <Image
-                  alt={screenshot.alt}
-                  height={screenshot.height}
-                  sizes="(max-width: 720px) 72vw, 320px"
-                  src={screenshot.src}
-                  width={screenshot.width}
-                />
-              </div>
-            ))}
+          <div className="screenshot-showcase">
+            <div
+              className="screenshot-gallery"
+              aria-label={`${app.name} screenshots`}
+              role="list"
+              tabIndex={0}
+            >
+              {app.screenshots.map((screenshot, index) => (
+                <figure className="gallery-item" key={screenshot.src} role="listitem">
+                  <div className="gallery-frame">
+                    <Image
+                      alt={screenshot.alt}
+                      height={screenshot.height}
+                      sizes="(max-width: 720px) 76vw, (max-width: 980px) 300px, 280px"
+                      src={screenshot.src}
+                      width={screenshot.width}
+                    />
+                  </div>
+                  <figcaption>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    {screenshot.label ?? `App screen ${index + 1}`}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -4,6 +4,7 @@ export type StoreName = "App Store" | "Google Play";
 export type AppAsset = {
   src: string;
   alt: string;
+  label?: string;
   width: number;
   height: number;
 };
@@ -108,48 +109,56 @@ export const appRegistry: readonly AppEntry[] = [
       {
         src: "/apps/gemfit/gemfit-home.webp",
         alt: "GemFit home dashboard showing a scheduled workout, training setup, and weekly activity",
+        label: "Home dashboard",
         width: 841,
         height: 1870,
       },
       {
         src: "/apps/gemfit/gemfit-workouts.webp",
         alt: "GemFit workout library with search, filters, and workout plans",
+        label: "Workout library",
         width: 841,
         height: 1870,
       },
       {
         src: "/apps/gemfit/gemfit-workout-details.webp",
         alt: "GemFit workout detail page describing a dumbbell shoulder routine",
+        label: "Workout details",
         width: 841,
         height: 1870,
       },
       {
         src: "/apps/gemfit/gemfit-exercise-video.webp",
         alt: "GemFit exercise guidance page with cues, muscle focus, equipment, and difficulty",
+        label: "Exercise guidance",
         width: 841,
         height: 1870,
       },
       {
         src: "/apps/gemfit/gemfit-plan.webp",
         alt: "GemFit training plan showing progress and upcoming sessions",
+        label: "Training plan",
         width: 841,
         height: 1870,
       },
       {
         src: "/apps/gemfit/gemfit-active-workout.webp",
         alt: "GemFit active workout screen with set progress, rest timing, and session controls",
+        label: "Active workout",
         width: 841,
         height: 1870,
       },
       {
         src: "/apps/gemfit/gemfit-progress.webp",
         alt: "GemFit activity screen with weekly workout totals and completed session history",
+        label: "Activity history",
         width: 841,
         height: 1870,
       },
       {
         src: "/apps/gemfit/gemfit-profile.webp",
         alt: "GemFit profile screen with training preferences and session goals",
+        label: "Training profile",
         width: 841,
         height: 1870,
       },
