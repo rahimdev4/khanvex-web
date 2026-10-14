@@ -6,11 +6,11 @@ export function Cta() {
     <section className="section cta-section">
       <div className="shell cta-card">
         <div>
-          <p className="eyebrow">Build thoughtfully</p>
-          <h2>Better apps begin with better questions.</h2>
+          <p className="eyebrow">Contact Khanvex</p>
+          <h2>Questions about a product or publishing enquiry?</h2>
           <p>
-            Have a product idea, a support question, or a reason to collaborate?
-            We would like to hear it.
+            Use the contact page for company enquiries, or visit support for
+            help with a Khanvex application.
           </p>
         </div>
         <Link className="button button-light" href="/contact">

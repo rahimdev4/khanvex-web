@@ -6,6 +6,8 @@ export const siteConfig = {
   url: "https://khanvex.tech",
   contactEmail: "hello@khanvex.tech",
   supportEmail: "support@khanvex.tech",
+  contactEmailVerified: false,
+  supportEmailVerified: false,
 } as const;
 
 export const primaryNavigation = [

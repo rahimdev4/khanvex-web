@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { primaryNavigation } from "@/lib/site";
 import { ArrowIcon } from "@/components/arrow-icon";
 import { BrandMark } from "@/components/brand-mark";
+import { DesktopNavigation, MobileNavigation } from "@/components/navigation";
 
 export function Header() {
   return (
@@ -12,32 +12,14 @@ export function Header() {
           <span>Khanvex</span>
         </Link>
 
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          {primaryNavigation.map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <DesktopNavigation />
 
         <Link className="button button-small desktop-contact" href="/contact">
           Let&apos;s talk
           <ArrowIcon />
         </Link>
 
-        <details className="mobile-menu">
-          <summary aria-label="Open navigation">
-            <span />
-            <span />
-          </summary>
-          <nav aria-label="Mobile navigation">
-            {primaryNavigation.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </details>
+        <MobileNavigation />
       </div>
     </header>
   );
