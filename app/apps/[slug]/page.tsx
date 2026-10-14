@@ -254,34 +254,54 @@ export default async function AppDetailPage({ params }: AppPageProps) {
       </section>
 
       <section className="section product-information-section">
-        <div className="shell product-information-grid">
-          <div>
-            <p className="eyebrow">Questions</p>
-            <h2>GemFit FAQs.</h2>
-          </div>
-          <div className="faq-list">
-            {app.faqs.map((faq) => (
-              <details key={faq.question}>
-                <summary>{faq.question}</summary>
-                <p>{faq.answer}</p>
-              </details>
-            ))}
+        <div className="shell">
+          <div className="product-faq-panel product-information-grid">
+            <div className="product-faq-heading">
+              <p className="eyebrow">Questions</p>
+              <h2>{app.name} FAQs.</h2>
+              <p>Clear answers based on GemFit’s current pre-release status and verified product details.</p>
+            </div>
+            <div className="faq-list">
+              {app.faqs.map((faq, index) => (
+                <details key={faq.question} open={index === 0}>
+                  <summary>
+                    <span className="faq-index">{String(index + 1).padStart(2, "0")}</span>
+                    <span>{faq.question}</span>
+                    <span className="faq-toggle" aria-hidden="true">+</span>
+                  </summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </div>
         <div className="shell product-links-panel">
-          <div>
+          <div className="product-links-copy">
             <p className="eyebrow">Support and policies</p>
-            <h2>Clear paths as GemFit prepares to launch.</h2>
+            <h2>Clear paths as {app.name} prepares to launch.</h2>
+            <p>Review the current support, privacy, and account-management status in one place.</p>
           </div>
           <nav aria-label={`${app.name} support and policy links`}>
             {app.supportEmailVerified ? (
-              <a href={`mailto:${app.supportEmail}`}>Product support <ArrowIcon /></a>
+              <a href={`mailto:${app.supportEmail}`}>
+                <span><strong>Product support</strong><small>Email the GemFit team</small></span>
+                <ArrowIcon />
+              </a>
             ) : (
-              <Link href="/support">Support status <ArrowIcon /></Link>
+              <Link href="/support">
+                <span><strong>Support status</strong><small>Current support availability</small></span>
+                <ArrowIcon />
+              </Link>
             )}
-            <Link href={`/apps/${app.slug}/privacy-policy`}>Provisional privacy notice <ArrowIcon /></Link>
+            <Link href={`/apps/${app.slug}/privacy-policy`}>
+              <span><strong>Privacy notice</strong><small>Provisional product disclosure</small></span>
+              <ArrowIcon />
+            </Link>
             {app.accountDeletion ? (
-              <Link href={`/apps/${app.slug}/delete-account`}>Account deletion status <ArrowIcon /></Link>
+              <Link href={`/apps/${app.slug}/delete-account`}>
+                <span><strong>Account deletion</strong><small>Current availability status</small></span>
+                <ArrowIcon />
+              </Link>
             ) : null}
           </nav>
         </div>
@@ -289,14 +309,17 @@ export default async function AppDetailPage({ params }: AppPageProps) {
 
       <section className="section product-download-section">
         <div className="shell product-download-card">
-          <div>
-            <p className="eyebrow">Android availability</p>
-            <h2>
-              {isReleased ? `Get ${app.name}.` : `${app.name} is preparing for Google Play.`}
-            </h2>
-            {!isReleased ? (
-              <p>The official download link will appear here after the Play listing is verified.</p>
-            ) : null}
+          <div className="product-download-identity">
+            <Image alt={app.icon.alt} height={72} src={app.icon.src} width={72} />
+            <div>
+              <p className="eyebrow">Android availability</p>
+              <h2>
+                {isReleased ? `Get ${app.name}.` : `${app.name} is preparing for Google Play.`}
+              </h2>
+              {!isReleased ? (
+                <p>The official download link will appear here after the Play listing is verified.</p>
+              ) : null}
+            </div>
           </div>
           {app.storeLinks.length > 0 ? (
             <StoreLinks links={app.storeLinks} />
