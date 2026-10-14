@@ -20,6 +20,11 @@ export type AppFeature = {
   screenshotIndex: number;
 };
 
+export type AppBenefit = {
+  title: string;
+  description: string;
+};
+
 export type AppFaq = {
   question: string;
   answer: string;
@@ -66,7 +71,7 @@ export type AppEntry = {
   screenshots: readonly AppAsset[];
   storeLinks: readonly StoreLink[];
   features: readonly AppFeature[];
-  benefits: readonly string[];
+  benefits: readonly AppBenefit[];
   faqs: readonly AppFaq[];
   supportEmail: string;
   supportEmailVerified: boolean;
@@ -203,11 +208,26 @@ export const appRegistry: readonly AppEntry[] = [
       },
     ],
     benefits: [
-      "Browse routines and exercises in one focused library.",
-      "Review exercise guidance and workout requirements.",
-      "Organize planned training sessions.",
-      "Follow sets, rest periods, and session progress.",
-      "Review completed workouts and weekly activity.",
+      {
+        title: "Discover",
+        description: "Browse routines and exercises in one focused library.",
+      },
+      {
+        title: "Prepare",
+        description: "Review exercise guidance and workout requirements.",
+      },
+      {
+        title: "Plan",
+        description: "Organize planned training sessions.",
+      },
+      {
+        title: "Train",
+        description: "Follow sets, rest periods, and session progress.",
+      },
+      {
+        title: "Review",
+        description: "Review completed workouts and weekly activity.",
+      },
     ],
     faqs: [
       {

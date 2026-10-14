@@ -6,7 +6,7 @@ import type { CSSProperties } from "react";
 import { AppMedia } from "@/components/app-media";
 import { ArrowIcon } from "@/components/arrow-icon";
 import { CapabilityIcon } from "@/components/capability-icon";
-import { ProductPhonePair } from "@/components/product-phone";
+import { ProductPhone, ProductPhonePair } from "@/components/product-phone";
 import { StoreLinks } from "@/components/store-links";
 import { getPublicApp, publicApps, publishedApps } from "@/data/apps";
 import { siteConfig } from "@/lib/site";
@@ -152,16 +152,32 @@ export default async function AppDetailPage({ params }: AppPageProps) {
                 From discovery to completed activity, each step stays connected and easy to follow.
               </p>
             </div>
-            <div className="capability-grid">
-              {app.benefits.map((benefit, index) => (
-                <article className="capability-card" key={benefit}>
-                  <div className="capability-card-top">
+            <div className="product-overview-body">
+              <div className="overview-workout-visual">
+                <div className="overview-visual-heading">
+                  <span>Workout mode</span>
+                  <strong>Guidance while you train</strong>
+                </div>
+                <ProductPhone
+                  className="overview-workout-phone"
+                  screenshot={app.screenshots[5] ?? app.screenshots[0]}
+                  sizes="(max-width: 720px) 48vw, 230px"
+                />
+                <span className="overview-chip overview-chip-progress">Session progress</span>
+                <span className="overview-chip overview-chip-rest">Rest timing</span>
+              </div>
+              <ol className="capability-grid">
+                {app.benefits.map((benefit, index) => (
+                  <li className="capability-card" key={benefit.title}>
                     <span className="capability-icon"><CapabilityIcon index={index} /></span>
+                    <div className="capability-copy">
+                      <h3>{benefit.title}</h3>
+                      <p>{benefit.description}</p>
+                    </div>
                     <span className="capability-number">{String(index + 1).padStart(2, "0")}</span>
-                  </div>
-                  <p>{benefit}</p>
-                </article>
-              ))}
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </div>
