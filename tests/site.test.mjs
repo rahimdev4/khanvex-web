@@ -93,22 +93,30 @@ test("GemFit metadata is canonical, pre-release safe, and structured", () => {
   assert.doesNotMatch(detailPage, /aggregateRating|ratingValue|offers:/);
 });
 
-test("GemFit legal routes remain explicit, provisional, and noindex", () => {
+test("GemFit privacy and deletion disclosures are final, public, and anchored", () => {
   const registry = read("data/apps.ts");
   const privacy = read("app/apps/[slug]/privacy-policy/page.tsx");
   const deletion = read("app/apps/[slug]/delete-account/page.tsx");
-  assert.match(registry, /privacyPolicy: \{\s+status: "provisional"/s);
-  assert.match(registry, /accountDeletion: \{\s+status: "provisional"/s);
-  assert.match(privacy, /index: false/);
-  assert.match(privacy, /Provisional notice/);
+  assert.match(registry, /privacyPolicy: \{\s+status: "final"/s);
+  assert.match(registry, /effectiveDate: "15 October 2026"/);
+  assert.match(registry, /publisherName: "khanvex"/);
+  assert.match(registry, /jurisdiction: "Pakistan"/);
+  assert.match(registry, /minimumUserAge: 15/);
+  assert.match(registry, /supportEmailVerified: true/);
+  assert.match(registry, /accountDeletion: \{\s+status: "operational"/s);
+  assert.match(privacy, /\? \{ index: true, follow: true \}/);
+  assert.match(privacy, /id="account-deletion"/);
+  assert.match(privacy, /Delete your GemFit account/);
+  assert.match(privacy, /mailto:support@khanvex\.tech\?subject=GemFit%20account%20deletion%20request/);
+  assert.doesNotMatch(privacy, /<EFFECTIVE DATE>|<PLAY DEVELOPER|<COUNTRY OR JURISDICTION>|<MINIMUM USER AGE>|<PROVIDER LOG/);
   assert.match(deletion, /index: false/);
   assert.match(deletion, /status === "operational"/);
 });
 
-test("sitemap derives product routes from approved published apps", () => {
+test("sitemap includes released products and final public policies", () => {
   const sitemap = read("app/sitemap.ts");
-  assert.match(sitemap, /publishedApps\.flatMap/);
-  assert.match(sitemap, /publishedApps\.length > 0/);
+  assert.match(sitemap, /publishedApps\.map/);
+  assert.match(sitemap, /privacyPolicy\?\.status === "final"/);
 });
 
 test("unverified email channels are not exposed unconditionally", () => {

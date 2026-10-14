@@ -37,7 +37,13 @@ export type LegalSection = {
 
 export type AppPrivacyPolicy = {
   status: "provisional" | "final";
+  effectiveDate: string;
   lastUpdated: string;
+  publisherName: string;
+  jurisdiction: string;
+  minimumUserAge: number;
+  intendedAudienceStatement: string;
+  providerRetentionSummary: string;
   introduction: string;
   sections: readonly LegalSection[];
 };
@@ -247,32 +253,32 @@ export const appRegistry: readonly AppEntry[] = [
       },
     ],
     supportEmail: "support@khanvex.tech",
-    supportEmailVerified: false,
+    supportEmailVerified: true,
     privacyPolicy: {
-      status: "provisional",
-      lastUpdated: "October 15, 2026",
+      status: "final",
+      effectiveDate: "15 October 2026",
+      lastUpdated: "15 October 2026",
+      publisherName: "khanvex",
+      jurisdiction: "Pakistan",
+      minimumUserAge: 15,
+      intendedAudienceStatement:
+        "GemFit is intended for a general fitness audience aged 15 and older and is not directed to children under 15.",
+      providerRetentionSummary:
+        "Supabase, hosting, email, and Cloudflare providers may retain service logs and backups under their applicable agreements, security requirements, and operational retention schedules. These provider-controlled records are not governed by GemFit’s seven-day deletion-receipt cleanup and may remain for different periods.",
       introduction:
-        "GemFit’s app-specific privacy disclosures are still being verified. This provisional page is not the final privacy policy.",
-      sections: [
-        {
-          heading: "Current status",
-          paragraphs: [
-            "The app’s data practices are under review. This page does not yet make final claims about data collection, retention, processors, authentication, or account handling.",
-          ],
-        },
-        {
-          heading: "Before publication",
-          paragraphs: [
-            "Khanvex will replace this notice after GemFit’s actual data flows and required disclosures have been verified.",
-          ],
-        },
-      ],
+        "This Privacy Policy explains how khanvex handles information when you use the GemFit Android application and related support services.",
+      sections: [],
     },
     accountDeletion: {
-      status: "provisional",
+      status: "operational",
       introduction:
-        "GemFit account-deletion availability and instructions have not yet been verified. This route is reserved for the final process and does not currently represent an operational deletion method.",
-      steps: [],
+        "You can permanently delete your GemFit account from the Android app after verifying account ownership.",
+      steps: [
+        "Sign in to GemFit and open Profile → Account settings → Delete account.",
+        "Review the deletion warning and enter your current password to verify ownership.",
+        "Confirm deletion. GemFit removes the authentication account and account-owned records, then clears account-scoped local data after confirmation.",
+      ],
+      contactEmail: "support@khanvex.tech",
     },
   },
 ];

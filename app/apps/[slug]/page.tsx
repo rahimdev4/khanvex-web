@@ -294,12 +294,18 @@ export default async function AppDetailPage({ params }: AppPageProps) {
               </Link>
             )}
             <Link href={`/apps/${app.slug}/privacy-policy`}>
-              <span><strong>Privacy notice</strong><small>Provisional product disclosure</small></span>
+              <span>
+                <strong>Privacy policy</strong>
+                <small>{app.privacyPolicy?.status === "final" ? "Published product policy" : "Provisional product disclosure"}</small>
+              </span>
               <ArrowIcon />
             </Link>
             {app.accountDeletion ? (
-              <Link href={`/apps/${app.slug}/delete-account`}>
-                <span><strong>Account deletion</strong><small>Current availability status</small></span>
+              <Link href={`/apps/${app.slug}/privacy-policy#account-deletion`}>
+                <span>
+                  <strong>Account deletion</strong>
+                  <small>{app.accountDeletion.status === "operational" ? "In-app and support instructions" : "Current availability status"}</small>
+                </span>
                 <ArrowIcon />
               </Link>
             ) : null}
