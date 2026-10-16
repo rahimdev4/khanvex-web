@@ -32,7 +32,10 @@ export function Footer() {
             <BrandMark className="brand-mark" />
             <span>Khanvex</span>
           </Link>
-          <p>Useful mobile applications for fitness, productivity, and everyday life.</p>
+          <p className="footer-tagline">
+            <span>SOFTWARE FOR A</span>
+            <span>BRIGHTER TOMORROW</span>
+          </p>
           <p className="footer-domain">khanvex.tech</p>
         </div>
 

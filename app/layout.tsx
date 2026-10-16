@@ -31,7 +31,21 @@ export const metadata: Metadata = {
     description: siteConfig.description,
   },
   icons: {
-    icon: "/icon.svg",
+    icon: [
+      {
+        url: "/images/logo/favicon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    shortcut: "/images/logo/favicon-512.png",
+    apple: [
+      {
+        url: "/images/logo/favicon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
   },
 };
 
@@ -47,6 +61,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: siteConfig.name,
   url: siteConfig.url,
+  logo: new URL("/images/logo/favicon-512.png", siteConfig.url).toString(),
   description: siteConfig.description,
   contactPoint: siteConfig.supportEmailVerified
     ? {

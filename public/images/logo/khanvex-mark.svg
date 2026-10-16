@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+  <title id="title">KHANEX KX symbol</title>
+  <desc id="desc">Geometric KX monogram in blue, with a transparent background.</desc>
+  <g id="khanex-monogram" fill="#3F73DF" transform="translate(-331 -251.5)">
+    <path id="kx-stem" d="M396 376H499V604L396 701Z"/>
+    <path id="kx-upper-arm" d="M738 396H861L712 545L652 484Z"/>
+    <path id="kx-lower-arm" d="M401 727L557 571L616 630L519 727Z"/>
+    <path id="kx-diagonal" d="M509 478H621L866 727H737L509 494Z"/>
+  </g>
+</svg>

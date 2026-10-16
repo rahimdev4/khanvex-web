@@ -9,6 +9,15 @@ Edit company identity, canonical origin, and the support email in `lib/site.ts`.
 - Public pages must not expose a disabled mailbox as an active `mailto:` link.
 - Do not add personal biographies, freelance services, unverified company-registration claims, addresses, employee counts, awards, partnerships, ratings, reviews, or download totals.
 
+## Homepage visual consistency
+
+Use the shared cobalt blue, navy, pale blue, and white palette for homepage updates. The color tokens and dark panel background (`--brand-action`, `--blue-tint`, `--brand-navy`, and `--brand-panel`) live in `app/globals.css`; homepage layout and component overrides live in `app/home.module.css`. The homepage maps `--blue-hover` to the deeper `--brand-action` blue for readable small text and button labels.
+
+- Keep new sections consistent with the existing typography, spacing, 32px desktop panels, and 14px action buttons.
+- Use `ProductShowcase` with `theme="brand"` and `Cta` with `variant="home"` on the homepage.
+- Preserve original app icons and screenshots. App-specific colors belong within those assets and product pages; homepage labels, cards, and controls use Khanvex blue.
+- Keep responsive layouts, visible keyboard focus, and reduced-motion behavior when changing presentation.
+
 ## Application registry
 
 All product content belongs in `data/apps.ts`.

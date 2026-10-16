@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1000 660">
+  <!-- Generator: Adobe Illustrator 30.3.0, SVG Export Plug-In . SVG Version: 2.1.3 Build 182)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #3f73df;
+      }
+    </style>
+  </defs>
+  <path id="kx-stem" class="st0" d="M280.25,54.75h103v228l-103,97V54.75Z"/>
+  <path id="kx-upper-arm" class="st0" d="M622.25,74.75h123l-149,149-60-61,86-88Z"/>
+  <path id="kx-lower-arm" class="st0" d="M285.25,405.75l156-156,59,59-97,97h-118Z"/>
+  <path id="kx-diagonal" class="st0" d="M393.25,156.75h112l245,249h-129l-228-233v-16Z"/>
+  <path id="letter-k" class="st0" d="M82.25,474.75h22v43l51-43h30l-53,47,59,53h-30l-57-50v50h-22v-100Z"/>
+  <path id="letter-h" class="st0" d="M235.25,474.75h22v39h62v-39h22v100h-22v-41h-62v41h-22v-100Z"/>
+  <path id="letter-a" class="st0" d="M386.25,574.75l48-100h18l48,100h-23l-34-72-35,72h-22Z"/>
+  <path id="letter-n" class="st0" d="M543.25,474.75h22l63,68v-68h22v100h-22l-63-68v68h-22v-100Z"/>
+  <path id="letter-e" class="st0" d="M700.25,474.75h86v20h-86v-20ZM700.25,514.75h86v20h-86v-20ZM700.25,554.75h86v20h-86v-20Z"/>
+  <path id="letter-x" class="st0" d="M833.25,474.75h27l30.5,35,30.5-35h27l-44,50,44,50h-27l-30.5-35-30.5,35h-27l44-50-44-50Z"/>
+</svg>
