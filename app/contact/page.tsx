@@ -17,45 +17,44 @@ export default function ContactPage() {
     <>
       <PageHero eyebrow="Contact" title="Let’s start a conversation.">
         <p>
-          Choose the right channel for company questions, product feedback, or
-          help with a Khanvex application.
+          One direct channel for company questions, product feedback, privacy
+          requests, and help with a Khanvex application.
         </p>
       </PageHero>
 
       <section className="section page-section">
-        <div className="shell contact-channel-grid">
-          <article className="contact-channel-card">
+        <div className="shell contact-channel-grid contact-channel-grid-single">
+          <article className="contact-channel-card contact-channel-card-support contact-channel-card-wide">
             <div className="contact-channel-number" aria-hidden="true">01</div>
-            <p className="eyebrow">General enquiries</p>
-            <h2>{siteConfig.contactEmail}</h2>
-            <p>
-              For company information, business enquiries, and general feedback.
-              This mailbox is listed for launch but has not yet been verified.
-            </p>
-            {siteConfig.contactEmailVerified ? (
-              <a className="button" href={`mailto:${siteConfig.contactEmail}`}>
-                Email Khanvex <ArrowIcon />
-              </a>
-            ) : (
-              <span className="channel-status">Email activation is still being verified.</span>
-            )}
-          </article>
-
-          <article className="contact-channel-card contact-channel-card-support">
-            <div className="contact-channel-number" aria-hidden="true">02</div>
-            <p className="eyebrow">Product support</p>
-            <h2>{siteConfig.supportEmail}</h2>
-            <p>
-              For help with a Khanvex application, privacy questions, account
-              requests, or product feedback.
-            </p>
-            {siteConfig.supportEmailVerified ? (
-              <a className="button" href={`mailto:${siteConfig.supportEmail}`}>
-                Contact support <ArrowIcon />
-              </a>
-            ) : (
-              <span className="channel-status">Support email activation is still being verified.</span>
-            )}
+            <div className="contact-channel-layout">
+              <div className="contact-channel-primary">
+                <p className="eyebrow">Contact and support</p>
+                <h2>{siteConfig.supportEmail}</h2>
+                <p>
+                  This monitored mailbox is the official contact point for every
+                  Khanvex enquiry.
+                </p>
+                {siteConfig.supportEmailVerified ? (
+                  <a className="button" href={`mailto:${siteConfig.supportEmail}`}>
+                    Email Khanvex <ArrowIcon />
+                  </a>
+                ) : null}
+              </div>
+              <div className="contact-purpose-grid" aria-label="Reasons to contact Khanvex">
+                <div>
+                  <span>Company</span>
+                  <p>General questions, business enquiries, and feedback.</p>
+                </div>
+                <div>
+                  <span>Applications</span>
+                  <p>Product help, technical issues, and feature feedback.</p>
+                </div>
+                <div>
+                  <span>Privacy</span>
+                  <p>Privacy questions, account requests, and data help.</p>
+                </div>
+              </div>
+            </div>
           </article>
         </div>
         <div className="shell contact-note">

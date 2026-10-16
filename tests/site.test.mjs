@@ -125,14 +125,23 @@ test("sitemap includes indexable previews and final public policies", () => {
   assert.match(sitemap, /privacyPolicy\?\.status === "final"/);
 });
 
-test("general email stays gated while the confirmed support mailbox is active", () => {
+test("the confirmed support mailbox is the only public contact address", () => {
   const site = read("lib/site.ts");
   const contact = read("app/contact/page.tsx");
-  assert.match(site, /contactEmailVerified: false/);
   assert.match(site, /supportEmailVerified: true/);
-  assert.match(contact, /siteConfig\.contactEmailVerified \?/);
+  assert.doesNotMatch(site, /contactEmail|hello@/);
+  assert.doesNotMatch(contact, /contactEmail|hello@/);
   assert.match(contact, /siteConfig\.supportEmailVerified \?/);
   assert.match(contact, /mailto:\$\{siteConfig\.supportEmail\}/);
+});
+
+test("homepage uses the approved mobile product showcase image", () => {
+  const stage = read("components/product-stage.tsx");
+  assert.ok(statSync(fileUrl("public/images/app-ss.webp")).size > 0);
+  assert.match(stage, /src="\/images\/app-ss\.webp"/);
+  assert.match(stage, /width=\{1448\}/);
+  assert.match(stage, /height=\{1086\}/);
+  assert.match(read("app/page.tsx"), /<ProductStage preload \/>/);
 });
 
 test("company pages use product-focused public copy", () => {

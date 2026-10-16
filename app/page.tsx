@@ -64,7 +64,7 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <ProductStage />
+          <ProductStage preload />
         </div>
       </section>
 

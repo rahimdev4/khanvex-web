@@ -4,9 +4,7 @@ export const siteConfig = {
   description:
     "Khanvex develops and publishes mobile applications that make everyday tasks simpler, more organized, and more enjoyable.",
   url: "https://khanvex.tech",
-  contactEmail: "hello@khanvex.tech",
   supportEmail: "support@khanvex.tech",
-  contactEmailVerified: false,
   supportEmailVerified: true,
 } as const;
 

@@ -2,9 +2,10 @@
 
 ## Company information
 
-Edit company identity, canonical origin, and email channels in `lib/site.ts`.
+Edit company identity, canonical origin, and the support email in `lib/site.ts`.
 
-- Set an email verification flag to `true` only after the owner confirms the mailbox is monitored and delivery has been tested.
+- Khanvex uses `support@khanvex.tech` as its sole public contact and support channel.
+- Set the email verification flag to `true` only after the owner confirms the mailbox is monitored and delivery has been tested.
 - Public pages must not expose a disabled mailbox as an active `mailto:` link.
 - Do not add personal biographies, freelance services, unverified company-registration claims, addresses, employee counts, awards, partnerships, ratings, reviews, or download totals.
 

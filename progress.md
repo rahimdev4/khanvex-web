@@ -121,3 +121,14 @@ Status: implemented and validated locally on `feat/company-content-seo-polish`. 
 - Robots and sitemap: production host and intended indexable route set verified
 - Responsive and accessibility implementation: code-reviewed for semantic structure, keyboard-native controls, focus states, reduced motion, responsive layout, and optimized images
 - Visual browser QA: unavailable in this session; desktop/mobile screenshots were not captured and remain an owner review item
+
+## Post-Step 5 — Homepage showcase and contact consolidation
+
+Status: implemented and validated locally on `feat/company-content-seo-polish`. Not pushed or deployed.
+
+- Replaced the homepage’s illustrative placeholder with the supplied transparent two-phone WebP, presented in a responsive light product stage with accurate alt text and optimized image sizing.
+- Removed the unused secondary contact mailbox from site configuration and public documentation.
+- Consolidated company enquiries, application support, privacy questions, and account requests under the sole monitored address `support@khanvex.tech`.
+- Reworked the Contact page into one clear contact panel and aligned the site-wide call to action with the single-channel model.
+- TypeScript, ESLint, 17 tests, and the production build passed; all 15 current static/SSG routes compiled.
+- Built homepage HTML contains the optimized showcase asset and descriptive alt text; built Contact HTML contains only the monitored support address and its active mail link.

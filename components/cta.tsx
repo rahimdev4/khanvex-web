@@ -7,10 +7,10 @@ export function Cta() {
       <div className="shell cta-card">
         <div>
           <p className="eyebrow">Contact Khanvex</p>
-          <h2>Questions about a product or publishing enquiry?</h2>
+          <h2>Questions about Khanvex or one of our apps?</h2>
           <p>
-            Use the contact page for company enquiries, or visit support for
-            help with a Khanvex application.
+            Use our single monitored channel for company enquiries, product
+            feedback, privacy requests, or application support.
           </p>
         </div>
         <Link className="button button-light" href="/contact">

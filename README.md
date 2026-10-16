@@ -40,7 +40,7 @@ Company-wide legal publication state is centralized in `data/company-policies.ts
 
 The current static site requires no environment variables. If integrations are added, document variable names in `.env.example` and keep all `.env*` files except that example out of Git.
 
-Contact and support email addresses are configured in `lib/site.ts`. `support@khanvex.tech` is confirmed as the monitored support channel. `hello@khanvex.tech` remains unverified and is not exposed as an active `mailto:` action.
+The sole public contact and support address is configured in `lib/site.ts`. `support@khanvex.tech` is confirmed as the monitored channel for company enquiries, product help, privacy questions, and account requests.
 
 ## Project handoff
 
