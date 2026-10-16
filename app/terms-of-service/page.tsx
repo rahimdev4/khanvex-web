@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHero } from "@/components/page-hero";
+import { CompanyHero, CompanyPage } from "@/components/company-page";
+import styles from "@/components/company-legal.module.css";
 import { companyPolicyConfig, isApprovedPolicy } from "@/data/company-policies";
 import { createPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -34,27 +35,30 @@ const sections = [
 
 export default function TermsOfServicePage() {
   return (
-    <>
-      <PageHero eyebrow="Using Khanvex services" title="Terms of Service">
+    <CompanyPage>
+      <CompanyHero eyebrow="Using Khanvex services" title="Terms of Service">
         <p>
           Terms for the Khanvex company website and, where stated, Khanvex mobile applications.
         </p>
-      </PageHero>
+      </CompanyHero>
 
-      <article className="section legal-document company-legal-document shell reading-width">
-        <p className="legal-notice">
-          Draft status: these terms are prepared for owner and legal review and are not yet the final published agreement.
-        </p>
-        <p className="legal-updated"><strong>Last revised:</strong> {companyPolicyConfig.terms.lastRevised}</p>
-
-        <nav className="legal-nav" aria-label="Terms of service sections">
+      <div className={`shell ${styles.layout}`}>
+        <nav className={styles.navigation} aria-label="Terms of service sections">
           <p>On this page</p>
-          <div className="legal-nav-links">
+          <div className={styles.navigationLinks}>
             {sections.map((section) => (
               <a href={`#${section.id}`} key={section.id}>{section.label}</a>
             ))}
           </div>
         </nav>
+
+        <article className={styles.document}>
+          <div className={styles.documentHeader}>
+            <p className={styles.notice}>
+              Draft status: these terms are prepared for owner and legal review and are not yet the final published agreement.
+            </p>
+            <p className={styles.updated}><strong>Last revised:</strong> {companyPolicyConfig.terms.lastRevised}</p>
+          </div>
 
         <section id="acceptance">
           <h2>1. Introduction and acceptance</h2>
@@ -204,7 +208,8 @@ export default function TermsOfServicePage() {
             General company contact information is available on the <Link href="/contact">Contact page</Link>.
           </p>
         </section>
-      </article>
-    </>
+        </article>
+      </div>
+    </CompanyPage>
   );
 }

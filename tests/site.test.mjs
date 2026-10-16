@@ -42,6 +42,32 @@ test("all required top-level routes have pages", () => {
   }
 });
 
+test("company routes opt into the shared homepage design", () => {
+  for (const route of ["apps", "about", "support", "contact", "privacy-policy", "terms-of-service"]) {
+    const page = read(`app/${route}/page.tsx`);
+    assert.match(page, /<CompanyPage>/, `${route} should use the shared company theme`);
+    assert.match(page, /<CompanyHero\b/, `${route} should use the shared page heading`);
+  }
+  const companyPage = read("components/company-page.tsx");
+  assert.match(companyPage, /homeStyles\.home/);
+  assert.match(companyPage, /aria-label="Breadcrumb"/);
+  assert.match(companyPage, /aria-labelledby="company-page-heading"/);
+});
+
+test("product routes retain independent styling from company routes", () => {
+  for (const path of [
+    "app/apps/[slug]/page.tsx",
+    "app/apps/[slug]/privacy-policy/page.tsx",
+    "app/apps/[slug]/delete-account/page.tsx",
+    "app/layout.tsx",
+  ]) {
+    assert.doesNotMatch(read(path), /CompanyPage|CompanyHero|company-legal\.module|homeStyles\.home/, path);
+  }
+  for (const route of ["about", "apps"]) {
+    assert.match(read(`app/${route}/page.tsx`), /theme="brand"/);
+  }
+});
+
 test("the reusable application route family is present", () => {
   for (const route of [
     "app/apps/[slug]/page.tsx",

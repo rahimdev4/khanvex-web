@@ -1,0 +1,130 @@
+.collection {
+  background: linear-gradient(180deg, white 60%, var(--section));
+  padding-block: 72px 88px;
+}
+
+.collectionHeading {
+  align-items: end;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  margin-bottom: 34px;
+}
+
+.collectionHeading h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-top: 17px;
+}
+
+.collectionCount {
+  align-items: center;
+  color: var(--body);
+  display: flex;
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  gap: 10px;
+  padding-bottom: 4px;
+}
+
+.collectionCount span {
+  align-items: center;
+  background: var(--blue-tint);
+  border: 1px solid var(--company-line);
+  border-radius: 10px;
+  color: var(--brand-action);
+  display: inline-flex;
+  font-weight: 720;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
+.products {
+  display: grid;
+}
+
+.availabilityNote {
+  align-items: center;
+  background: white;
+  border: 1px solid var(--company-line);
+  border-radius: 20px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  margin-top: 28px;
+  padding: 26px 30px;
+}
+
+.availabilityNote > svg {
+  color: var(--brand-action);
+  height: 26px;
+  width: 26px;
+}
+
+.availabilityNote h3 {
+  font-size: 0.92rem;
+}
+
+.availabilityNote p {
+  font-size: 0.79rem;
+  margin-top: 5px;
+  max-width: 640px;
+}
+
+.emptyState {
+  align-items: start;
+  background: var(--section);
+  border: 1px solid var(--company-line);
+  border-radius: 32px;
+  display: flex;
+  gap: 28px;
+  padding: 48px;
+}
+
+.emptyIcon {
+  background: var(--blue-tint);
+  border-radius: 16px;
+  color: var(--brand-action);
+  display: flex;
+  flex: 0 0 56px;
+  height: 56px;
+  padding: 14px;
+}
+
+.emptyState h2 {
+  font-size: 1.8rem;
+  margin-top: 16px;
+}
+
+.emptyState p:not(:global(.eyebrow)) {
+  margin-block: 20px 24px;
+}
+
+@media (max-width: 720px) {
+  .collection {
+    padding-block: 50px 60px;
+  }
+
+  .collectionHeading {
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .availabilityNote {
+    align-items: start;
+    gap: 14px;
+    grid-template-columns: 24px minmax(0, 1fr);
+    padding: 24px;
+  }
+
+  .availabilityNote > a {
+    grid-column: 2;
+  }
+
+  .emptyState {
+    border-radius: 24px;
+    flex-direction: column;
+    padding: 28px 24px;
+  }
+}

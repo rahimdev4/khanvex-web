@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AppGrid } from "@/components/app-grid";
 import { ArrowIcon } from "@/components/arrow-icon";
+import { CompanyHero, CompanyIcon, CompanyPage } from "@/components/company-page";
 import { Cta } from "@/components/cta";
-import { PageHero } from "@/components/page-hero";
-import { ProductStage } from "@/components/product-stage";
+import { ProductShowcase } from "@/components/product-showcase";
 import { indexableApps, publicApps } from "@/data/apps";
 import { createPageMetadata } from "@/lib/metadata";
+import styles from "./apps.module.css";
 
 const hasPublicApps = publicApps.length > 0;
 const hasIndexableApps = indexableApps.length > 0;
@@ -21,22 +21,36 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function AppsPage() {
   return (
-    <>
-      <PageHero eyebrow="Khanvex apps" title="Apps for everyday goals.">
+    <CompanyPage>
+      <CompanyHero eyebrow="Khanvex apps" title="Apps for everyday goals.">
         <p>
           Discover useful mobile products for fitness, productivity, and
           everyday life, with availability shown clearly on every app page.
         </p>
-      </PageHero>
+      </CompanyHero>
 
-      <section className="section page-section">
+      <section className={styles.collection} aria-labelledby="collection-heading">
         <div className="shell">
+          <div className={styles.collectionHeading}>
+            <div>
+              <p className="eyebrow">The collection</p>
+              <h2 id="collection-heading">Explore what we’re building.</h2>
+            </div>
+            <p className={styles.collectionCount}>
+              <span>{String(publicApps.length).padStart(2, "0")}</span>
+              {publicApps.length === 1 ? "application" : "applications"}
+            </p>
+          </div>
           {hasPublicApps ? (
-            <AppGrid apps={publicApps} />
+            <div className={styles.products}>
+              {publicApps.map((app, index) => (
+                <ProductShowcase app={app} key={app.slug} reverse={index % 2 === 1} theme="brand" />
+              ))}
+            </div>
           ) : (
-            <div className="empty-state refined-empty-state">
-              <ProductStage />
-              <div className="empty-state-copy">
+            <div className={styles.emptyState}>
+              <span className={styles.emptyIcon}><CompanyIcon name="layers" /></span>
+              <div>
                 <p className="eyebrow">Collection in preparation</p>
                 <h2>New applications are on the way.</h2>
                 <p>
@@ -49,9 +63,17 @@ export default function AppsPage() {
               </div>
             </div>
           )}
+          <aside className={styles.availabilityNote}>
+            <CompanyIcon name="shield" />
+            <div>
+              <h3>Know what’s available.</h3>
+              <p>Every app page shows its current status. Official download links appear when a product is available in the store.</p>
+            </div>
+            <Link className="text-link" href="/support">App support <ArrowIcon /></Link>
+          </aside>
         </div>
       </section>
-      <Cta />
-    </>
+      <Cta variant="home" />
+    </CompanyPage>
   );
 }

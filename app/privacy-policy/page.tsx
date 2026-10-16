@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHero } from "@/components/page-hero";
+import { CompanyHero, CompanyPage } from "@/components/company-page";
+import styles from "@/components/company-legal.module.css";
 import { companyPolicyConfig, isApprovedPolicy } from "@/data/company-policies";
 import { createPageMetadata } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -35,28 +36,31 @@ const sections = [
 
 export default function PrivacyPolicyPage() {
   return (
-    <>
-      <PageHero eyebrow="Privacy at Khanvex" title="Privacy Policy">
+    <CompanyPage>
+      <CompanyHero eyebrow="Privacy at Khanvex" title="Privacy Policy">
         <p>
           A clear overview of information handling on the Khanvex website,
           company communications, and separate application privacy notices.
         </p>
-      </PageHero>
+      </CompanyHero>
 
-      <article className="section legal-document company-legal-document shell reading-width">
-        <p className="legal-notice">
-          Draft status: this policy is prepared for owner and legal review and is not yet the final published company policy.
-        </p>
-        <p className="legal-updated"><strong>Last revised:</strong> {companyPolicyConfig.privacy.lastRevised}</p>
-
-        <nav className="legal-nav" aria-label="Privacy policy sections">
+      <div className={`shell ${styles.layout}`}>
+        <nav className={styles.navigation} aria-label="Privacy policy sections">
           <p>On this page</p>
-          <div className="legal-nav-links">
+          <div className={styles.navigationLinks}>
             {sections.map((section) => (
               <a href={`#${section.id}`} key={section.id}>{section.label}</a>
             ))}
           </div>
         </nav>
+
+        <article className={styles.document}>
+          <div className={styles.documentHeader}>
+            <p className={styles.notice}>
+              Draft status: this policy is prepared for owner and legal review and is not yet the final published company policy.
+            </p>
+            <p className={styles.updated}><strong>Last revised:</strong> {companyPolicyConfig.privacy.lastRevised}</p>
+          </div>
 
         <section id="introduction">
           <h2>1. Introduction</h2>
@@ -226,7 +230,8 @@ export default function PrivacyPolicyPage() {
             General company enquiries can be directed through the <Link href="/contact">contact page</Link>.
           </p>
         </section>
-      </article>
-    </>
+        </article>
+      </div>
+    </CompanyPage>
   );
 }

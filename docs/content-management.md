@@ -9,12 +9,14 @@ Edit company identity, canonical origin, and the support email in `lib/site.ts`.
 - Public pages must not expose a disabled mailbox as an active `mailto:` link.
 - Do not add personal biographies, freelance services, unverified company-registration claims, addresses, employee counts, awards, partnerships, ratings, reviews, or download totals.
 
-## Homepage visual consistency
+## Company-page visual consistency
 
 Use the shared cobalt blue, navy, pale blue, and white palette for homepage updates. The color tokens and dark panel background (`--brand-action`, `--blue-tint`, `--brand-navy`, and `--brand-panel`) live in `app/globals.css`; homepage layout and component overrides live in `app/home.module.css`. The homepage maps `--blue-hover` to the deeper `--brand-action` blue for readable small text and button labels.
 
 - Keep new sections consistent with the existing typography, spacing, 32px desktop panels, and 14px action buttons.
 - Use `ProductShowcase` with `theme="brand"` and `Cta` with `variant="home"` on the homepage.
+- Company routes (`/about`, `/apps`, `/contact`, `/support`, `/privacy-policy`, and `/terms-of-service`) use `CompanyPage` and `CompanyHero` from `components/company-page.tsx`. This wrapper reuses the homepage theme, with consistent breadcrumbs, headings, buttons, and responsive spacing. Keep page-specific additions in CSS Modules.
+- Use the same brand showcase and CTA variants on company routes. Never apply `CompanyPage`, the homepage theme wrapper, or company legal styles to `/apps/[slug]` and its privacy/deletion routes: those keep their independent product design and colors.
 - Preserve original app icons and screenshots. App-specific colors belong within those assets and product pages; homepage labels, cards, and controls use Khanvex blue.
 - Keep responsive layouts, visible keyboard focus, and reduced-motion behavior when changing presentation.
 

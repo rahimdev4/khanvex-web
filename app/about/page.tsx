@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/arrow-icon";
+import { BrandMark } from "@/components/brand-mark";
+import { CompanyHero, CompanyIcon, CompanyPage } from "@/components/company-page";
 import { Cta } from "@/components/cta";
-import { PageHero } from "@/components/page-hero";
 import { ProductShowcase } from "@/components/product-showcase";
 import { publicApps } from "@/data/apps";
 import { createPageMetadata } from "@/lib/metadata";
+import styles from "./about.module.css";
 
 export const metadata: Metadata = createPageMetadata({
   title: "About Khanvex",
@@ -15,9 +17,9 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 const focusAreas = [
-  ["01", "Fitness", "Products that help people organize routines, follow guidance, and understand their activity."],
-  ["02", "Productivity", "Focused tools designed to make planning and everyday work easier to manage."],
-  ["03", "Everyday utilities", "Practical applications that reduce friction in common, repeatable tasks."],
+  ["01", "target", "Fitness", "Products that help people organize routines, follow guidance, and understand their activity."],
+  ["02", "layers", "Productivity", "Focused tools designed to make planning and everyday work easier to manage."],
+  ["03", "spark", "Everyday utilities", "Practical applications that reduce friction in common, repeatable tasks."],
 ] as const;
 
 const approach = [
@@ -28,21 +30,46 @@ const approach = [
 
 export default function AboutPage() {
   return (
-    <>
-      <PageHero eyebrow="About Khanvex" title="Creating apps for everyday life.">
+    <CompanyPage>
+      <CompanyHero
+        eyebrow="About Khanvex"
+        title="Creating apps for everyday life."
+        actions={
+          <>
+            <Link className="button" href="/apps">Explore our apps <ArrowIcon /></Link>
+            <a className="text-link" href="#our-approach">Our approach <ArrowIcon /></a>
+          </>
+        }
+        aside={
+          <div className={styles.brandPanel}>
+            <div className={styles.brandIdentity}>
+              <BrandMark className={styles.brandMark} />
+              <span>Khanvex</span>
+            </div>
+            <div className={styles.brandWatermark} aria-hidden="true">
+              <BrandMark className={styles.watermarkImage} />
+            </div>
+            <div className={styles.brandStatement}>
+              <p>Our purpose</p>
+              <h2>Software for a<br /><span>brighter tomorrow.</span></h2>
+            </div>
+            <p className={styles.brandSignature}>Thoughtfully made. Built around you.</p>
+          </div>
+        }
+      >
         <p>
           Khanvex develops and publishes mobile applications designed to make
           everyday tasks simpler, more organized, and more enjoyable.
         </p>
-      </PageHero>
+      </CompanyHero>
 
-      <section className="section page-section">
-        <div className="shell editorial-grid about-editorial">
-          <div className="sticky-label">
+      <section className={styles.section} aria-labelledby="who-heading">
+        <div className={`shell ${styles.story}`}>
+          <div>
             <p className="eyebrow">Who we are</p>
+            <h2 id="who-heading">A focused home for useful mobile products.</h2>
           </div>
-          <div className="editorial-copy">
-            <h2>A focused home for useful mobile products.</h2>
+          <div className={styles.storyCopy}>
             <p>
               Khanvex is a mobile application brand focused on developing and
               publishing digital products that support real everyday needs.
@@ -55,16 +82,22 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section soft-section">
+      <section className={`${styles.section} ${styles.focusSection}`} aria-labelledby="focus-heading">
         <div className="shell">
-          <div className="section-heading compact-heading">
-            <p className="eyebrow">What we build</p>
-            <h2>Applications shaped around practical goals.</h2>
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className="eyebrow">What we build</p>
+              <h2 id="focus-heading">Everyday goals.<br />Thoughtful possibilities.</h2>
+            </div>
+            <p>Our focus starts with the things people do every day—and how software can make them a little simpler.</p>
           </div>
-          <div className="company-focus-grid">
-            {focusAreas.map(([number, title, copy]) => (
-              <article className="value-card" key={number}>
-                <span>{number}</span>
+          <div className={styles.focusGrid}>
+            {focusAreas.map(([number, icon, title, copy]) => (
+              <article className={styles.focusCard} key={number}>
+                <div className={styles.cardTop}>
+                  <span className={styles.icon}><CompanyIcon name={icon} /></span>
+                  <span className={styles.number}>{number}</span>
+                </div>
                 <h3>{title}</h3>
                 <p>{copy}</p>
               </article>
@@ -73,27 +106,31 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section page-section">
+      <section className={styles.section} id="our-approach" aria-labelledby="approach-heading">
         <div className="shell">
-          <div className="section-heading compact-heading">
-            <p className="eyebrow">Our approach</p>
-            <h2>Simple choices, useful features, lasting value.</h2>
-          </div>
-          <div className="principle-grid">
-            {approach.map(([number, title, copy]) => (
-              <article className="principle-card" key={number}>
-                <span>{number}</span>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{copy}</p>
-                </div>
-              </article>
-            ))}
+          <div className={styles.approachPanel}>
+            <div className={styles.approachIntro}>
+              <p className={styles.darkEyebrow}>Our approach</p>
+              <h2 id="approach-heading">Simple choices.<br /><span>Lasting value.</span></h2>
+              <p>Care goes into every part of the experience, from the first screen to the help you need along the way.</p>
+              <Link className={styles.approachLink} href="/support">See how we support you <ArrowIcon /></Link>
+            </div>
+            <ol className={styles.approachList}>
+              {approach.map(([number, title, copy]) => (
+                <li key={number}>
+                  <span className={styles.stepNumber}>{number}</span>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{copy}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
 
-      <section className="section soft-section" aria-labelledby="about-apps-heading">
+      <section className={`${styles.section} ${styles.collectionSection}`} aria-labelledby="about-apps-heading">
         <div className="shell">
           <div className="section-heading collection-heading">
             <div>
@@ -105,7 +142,7 @@ export default function AboutPage() {
           {publicApps.length > 0 ? (
             <div className="showcase-list">
               {publicApps.map((app, index) => (
-                <ProductShowcase app={app} key={app.slug} reverse={index % 2 === 1} />
+                <ProductShowcase app={app} key={app.slug} reverse={index % 2 === 1} theme="brand" />
               ))}
             </div>
           ) : (
@@ -121,7 +158,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <Cta />
-    </>
+      <Cta variant="home" />
+    </CompanyPage>
   );
 }
