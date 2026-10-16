@@ -8,7 +8,7 @@ import { ArrowIcon } from "@/components/arrow-icon";
 import { CapabilityIcon } from "@/components/capability-icon";
 import { ProductPhone, ProductPhonePair } from "@/components/product-phone";
 import { StoreLinks } from "@/components/store-links";
-import { getPublicApp, publicApps, publishedApps } from "@/data/apps";
+import { getPublicApp, indexableApps, publicApps, publishedApps } from "@/data/apps";
 import { siteConfig } from "@/lib/site";
 
 type AppPageProps = {
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: AppPageProps): Promise<Metada
     return { title: "App not found", robots: { index: false, follow: false } };
   }
 
-  const isReleased = publishedApps.some((publishedApp) => publishedApp.slug === app.slug);
+  const isIndexable = indexableApps.some((indexableApp) => indexableApp.slug === app.slug);
 
   return {
     title: app.seoTitle,
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: AppPageProps): Promise<Metada
     icons: {
       other: [{ url: app.icon.src, type: "image/webp" }],
     },
-    robots: isReleased
+    robots: isIndexable
       ? { index: true, follow: true }
       : { index: false, follow: true },
     openGraph: {

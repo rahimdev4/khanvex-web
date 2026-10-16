@@ -2,12 +2,12 @@ export const siteConfig = {
   name: "Khanvex",
   title: "Khanvex — Apps for better everyday experiences",
   description:
-    "Khanvex creates thoughtful mobile apps built around real needs, clear experiences, and lasting usefulness.",
+    "Khanvex develops and publishes mobile applications that make everyday tasks simpler, more organized, and more enjoyable.",
   url: "https://khanvex.tech",
   contactEmail: "hello@khanvex.tech",
   supportEmail: "support@khanvex.tech",
   contactEmailVerified: false,
-  supportEmailVerified: false,
+  supportEmailVerified: true,
 } as const;
 
 export const primaryNavigation = [

@@ -49,7 +49,7 @@ Status: approved checkpoint at `157b14315b720157d048fe7176383e390a06d034`; pushe
 
 ## Step 4 — GemFit product integration
 
-Status: completed locally on `feat/gemfit-product-integration`; not pushed, merged, or deployed.
+Status: completed and pushed on `feat/gemfit-product-integration`; pull request #2 remains open and unmerged. Not deployed.
 
 ### Product integration
 
@@ -82,3 +82,42 @@ Status: completed locally on `feat/gemfit-product-integration`; not pushed, merg
 - Runtime: homepage, apps listing, GemFit, privacy, and deletion routes returned 200; unknown app returned 404
 - SEO: canonical, metadata, noindex rules, and JSON-LD presence verified in built output
 - Visual browser QA: unavailable in this session; no desktop/mobile screenshots were captured
+
+## Step 5 — Company content, legal drafts, and SEO readiness
+
+Status: implemented and validated locally on `feat/company-content-seo-polish`. This branch must not be pushed, merged, or deployed without owner approval.
+
+### Company experience
+
+- Rewrote the About page around Khanvex as a mobile application publisher, with clear company, product-category, approach, application, support, and contact content.
+- Refined the homepage and Apps collection copy to focus on useful products rather than internal publishing procedures.
+- Rebuilt Contact around separate general and product-support channels without exposing the unverified general mailbox as an active link.
+- Expanded Support into a public help hub with product navigation, privacy and account links, verified support email, and grounded FAQs.
+- Removed internal email-verification language from the footer while retaining truthful configuration safeguards.
+
+### Legal content
+
+- Replaced the minimal company Privacy overview with a structured company policy draft covering scope, information handling, app-specific disclosures, providers, sharing, security, retention, rights, deletion, children, international handling, updates, and contact.
+- Replaced the Terms status notice with a structured draft covering service scope, eligibility, accounts, acceptable use, intellectual property, providers, updates, conditional payments, fitness information, disclaimers, liability, changes, and contact.
+- Centralized company policy state in `data/company-policies.ts`; both company drafts remain `noindex` until owner and legal approval.
+- Preserved the separate, final GemFit Privacy Policy and operational account-deletion information.
+
+### SEO and handoff
+
+- Added reusable page metadata for unique titles, descriptions, production canonicals, Open Graph, Twitter/X, and robots rules.
+- Added an independent search-readiness gate so an approved public pre-release can be indexed without being represented as released.
+- Prepared Search Console, content management, legal review, and production launch documentation under `docs/`.
+- Kept canonical URLs pinned to `https://khanvex.tech`, including on preview deployments.
+- No DNS, Cloudflare, Search Console, production environment, Vercel, remote Git, or pull request changes were made in Step 5.
+
+### Validation
+
+- TypeScript: passed
+- ESLint: passed
+- Tests: 16 passed
+- Production build: passed; 16 static/SSG routes generated
+- Runtime: all expected routes returned 200; unknown app returned 404
+- Metadata: unique titles, descriptions, production canonicals, Open Graph, Twitter/X, and intended robots states verified from rendered HTML
+- Robots and sitemap: production host and intended indexable route set verified
+- Responsive and accessibility implementation: code-reviewed for semantic structure, keyboard-native controls, focus states, reduced motion, responsive layout, and optimized images
+- Visual browser QA: unavailable in this session; desktop/mobile screenshots were not captured and remain an owner review item

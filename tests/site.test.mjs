@@ -26,10 +26,14 @@ test("GemFit is an approved public preview without being marked as released", ()
   assert.doesNotMatch(registry, /play\.google\.com/);
 });
 
-test("provisional legal content and apps are excluded from indexing", () => {
-  assert.match(read("app/apps/page.tsx"), /index: false/);
-  assert.match(read("app/privacy-policy/page.tsx"), /index: false/);
-  assert.match(read("app/terms-of-service/page.tsx"), /index: false/);
+test("company legal drafts remain noindex while approved previews use a separate search gate", () => {
+  const policyConfig = read("data/company-policies.ts");
+  assert.match(policyConfig, /privacy: \{\s+status: "draft"/s);
+  assert.match(policyConfig, /terms: \{\s+status: "draft"/s);
+  assert.match(read("app/privacy-policy/page.tsx"), /index: isApproved/);
+  assert.match(read("app/terms-of-service/page.tsx"), /index: isApproved/);
+  assert.match(read("app/apps/page.tsx"), /index: hasIndexableApps/);
+  assert.match(read("data/apps.ts"), /indexableApps = publicApps\.filter/);
 });
 
 test("all required top-level routes have pages", () => {
@@ -83,10 +87,11 @@ test("GemFit homepage, listing, and landing page use approved product content", 
   assert.match(detailPage, /GemFit is preparing for Google Play/);
 });
 
-test("GemFit metadata is canonical, pre-release safe, and structured", () => {
+test("GemFit metadata is canonical, preview-safe, index-ready, and structured", () => {
   const detailPage = read("app/apps/[slug]/page.tsx");
   assert.match(detailPage, /alternates: \{ canonical: `\/apps\/\$\{app\.slug\}` \}/);
-  assert.match(detailPage, /index: false/);
+  assert.match(detailPage, /indexableApps\.some/);
+  assert.match(detailPage, /index: true/);
   assert.match(detailPage, /SoftwareApplication/);
   assert.match(detailPage, /HealthApplication/);
   assert.match(detailPage, /replace\(\/<\/g, "\\\\u003c"\)/);
@@ -104,7 +109,7 @@ test("GemFit privacy and deletion disclosures are final, public, and anchored", 
   assert.match(registry, /minimumUserAge: 15/);
   assert.match(registry, /supportEmailVerified: true/);
   assert.match(registry, /accountDeletion: \{\s+status: "operational"/s);
-  assert.match(privacy, /\? \{ index: true, follow: true \}/);
+  assert.match(privacy, /index: app\.privacyPolicy\.status === "final"/);
   assert.match(privacy, /id="account-deletion"/);
   assert.match(privacy, /Delete your GemFit account/);
   assert.match(privacy, /mailto:support@khanvex\.tech\?subject=GemFit%20account%20deletion%20request/);
@@ -113,18 +118,76 @@ test("GemFit privacy and deletion disclosures are final, public, and anchored", 
   assert.match(deletion, /status === "operational"/);
 });
 
-test("sitemap includes released products and final public policies", () => {
+test("sitemap includes indexable previews and final public policies", () => {
   const sitemap = read("app/sitemap.ts");
-  assert.match(sitemap, /publishedApps\.map/);
+  assert.match(sitemap, /indexableApps\.map/);
+  assert.match(sitemap, /"\/apps"/);
   assert.match(sitemap, /privacyPolicy\?\.status === "final"/);
 });
 
-test("unverified email channels are not exposed unconditionally", () => {
+test("general email stays gated while the confirmed support mailbox is active", () => {
   const site = read("lib/site.ts");
   const contact = read("app/contact/page.tsx");
   assert.match(site, /contactEmailVerified: false/);
-  assert.match(site, /supportEmailVerified: false/);
+  assert.match(site, /supportEmailVerified: true/);
   assert.match(contact, /siteConfig\.contactEmailVerified \?/);
+  assert.match(contact, /siteConfig\.supportEmailVerified \?/);
+  assert.match(contact, /mailto:\$\{siteConfig\.supportEmail\}/);
+});
+
+test("company pages use product-focused public copy", () => {
+  const companyPages = [
+    read("app/page.tsx"),
+    read("app/about/page.tsx"),
+    read("app/apps/page.tsx"),
+    read("app/contact/page.tsx"),
+    read("app/support/page.tsx"),
+    read("components/footer.tsx"),
+  ].join("\n");
+  assert.match(companyPages, /Apps for better everyday experiences/i);
+  assert.match(companyPages, /Creating apps for everyday life/i);
+  assert.doesNotMatch(companyPages, /Fiverr|Upwork|SparkDevX|freelanc|registered office|employee count/i);
+});
+
+test("company legal drafts contain the required structure without invented governing law", () => {
+  const privacy = read("app/privacy-policy/page.tsx");
+  const terms = read("app/terms-of-service/page.tsx");
+  for (const phrase of [
+    "Information collected",
+    "Service providers",
+    "Data retention",
+    "Account and data deletion",
+    "Children",
+    "International data handling",
+  ]) {
+    assert.match(privacy, new RegExp(phrase, "i"));
+  }
+  for (const phrase of [
+    "Eligibility and user responsibilities",
+    "Acceptable use",
+    "Intellectual property",
+    "Payments and subscriptions",
+    "General wellness and fitness information",
+    "Limitation of liability",
+  ]) {
+    assert.match(terms, new RegExp(phrase, "i"));
+  }
+  assert.doesNotMatch(terms, /governed by the laws of|exclusive jurisdiction|registered office/i);
+});
+
+test("SEO and launch handoff documentation is present", () => {
+  for (const document of [
+    "docs/seo-readiness.md",
+    "docs/content-management.md",
+    "docs/legal-review-checklist.md",
+    "docs/production-launch-checklist.md",
+  ]) {
+    assert.doesNotThrow(() => read(document));
+  }
+  const seo = read("docs/seo-readiness.md");
+  assert.match(seo, /Domain property `khanvex\.tech`/);
+  assert.match(seo, /Do not create or guess a token/);
+  assert.match(seo, /https:\/\/khanvex\.tech\/sitemap\.xml/);
 });
 
 test("navigation exposes current-page state", () => {

@@ -1,30 +1,39 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowIcon } from "@/components/arrow-icon";
 import { Cta } from "@/components/cta";
 import { ProductShowcase } from "@/components/product-showcase";
 import { ProductStage } from "@/components/product-stage";
 import { featuredApps } from "@/data/apps";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Khanvex — Apps for better everyday experiences",
+  description:
+    "Discover Khanvex, a mobile application publisher creating clear and useful apps for fitness, productivity, and everyday life.",
+  path: "/",
+});
 
 const principles = [
   {
     number: "01",
-    title: "A clear purpose",
-    copy: "Each app should solve a specific problem and explain its value without exaggeration.",
+    title: "Useful by design",
+    copy: "Every product begins with a practical need and a focused reason to exist.",
   },
   {
     number: "02",
-    title: "Straightforward to use",
-    copy: "Familiar patterns, direct language, and accessible choices keep the experience easy to understand.",
+    title: "Easy to understand",
+    copy: "Clear interfaces and familiar patterns help people move forward with confidence.",
   },
   {
     number: "03",
-    title: "Honest presentation",
-    copy: "Product pages use approved screenshots, official store links, and verified information.",
+    title: "Thoughtfully presented",
+    copy: "Product information is direct, useful, and grounded in what each app actually offers.",
   },
   {
     number: "04",
-    title: "Support after release",
-    copy: "Every published app needs a clear support path and product-specific privacy information.",
+    title: "Supported with care",
+    copy: "Straightforward support and privacy information stay easy to find as products grow.",
   },
 ] as const;
 
@@ -62,12 +71,12 @@ export default function HomePage() {
       <section className="section intro-section">
         <div className="shell split-heading">
           <div>
-            <p className="eyebrow">Our approach</p>
-            <h2>A clear purpose for every app.</h2>
+            <p className="eyebrow">About Khanvex</p>
+            <h2>Practical digital products, thoughtfully made.</h2>
           </div>
           <p className="section-lede">
-            Khanvex gives each product a focused publishing home. We present
-            what an app does, where to get it, and how to find help—without inflated claims.
+            Khanvex develops mobile apps for fitness, productivity, and everyday
+            needs, with an emphasis on clear experiences and lasting usefulness.
           </p>
         </div>
       </section>
@@ -80,8 +89,8 @@ export default function HomePage() {
               <h2 id="products-heading">Meet GemFit.</h2>
             </div>
             <p>
-              A first look at Khanvex&apos;s Android fitness app, presented with its
-              real interface and a clear pre-release status.
+              Explore the real interface of Khanvex&apos;s first fitness application,
+              currently being prepared for Android.
             </p>
           </div>
 
@@ -106,8 +115,8 @@ export default function HomePage() {
           <div className="collection-action">
             <p>
               {featuredApps.length > 0
-                ? "GemFit is preparing for Google Play."
-                : "No applications are publicly listed yet."}
+                ? "GemFit is coming soon to Google Play."
+                : "The Khanvex app collection is taking shape."}
             </p>
             <Link className="text-link" href="/apps">
               View all apps <ArrowIcon />
@@ -119,8 +128,8 @@ export default function HomePage() {
       <section className="section soft-section" aria-labelledby="principles-heading">
         <div className="shell">
           <div className="section-heading compact-heading">
-            <p className="eyebrow">Publishing standard</p>
-            <h2 id="principles-heading">What every Khanvex product page should provide.</h2>
+            <p className="eyebrow">Why Khanvex</p>
+            <h2 id="principles-heading">Built for better everyday experiences.</h2>
           </div>
           <div className="principle-grid principle-grid-four">
             {principles.map((principle) => (

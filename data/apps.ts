@@ -306,8 +306,18 @@ function hasReleaseReadiness(app: AppEntry) {
   );
 }
 
+function hasSearchReadiness(app: AppEntry) {
+  return (
+    hasApprovedPublicContent(app) &&
+    app.supportEmailVerified &&
+    app.privacyPolicy?.status === "final" &&
+    (!app.accountDeletion || app.accountDeletion.status === "operational")
+  );
+}
+
 export const publicApps = appRegistry.filter(hasApprovedPublicContent);
 export const publishedApps = publicApps.filter(hasReleaseReadiness);
+export const indexableApps = publicApps.filter(hasSearchReadiness);
 export const featuredApps = publicApps.filter((app) => app.featured);
 
 export function getPublicApp(slug: string) {

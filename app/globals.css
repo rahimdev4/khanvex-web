@@ -977,6 +977,25 @@ h3 {
   margin-top: 52px;
 }
 
+.company-focus-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 52px;
+}
+
+.company-focus-grid .value-card {
+  min-height: 250px;
+}
+
+.about-apps-empty {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-top: 52px;
+  padding: 42px;
+}
+
 .value-card {
   background: white;
   border: 1px solid rgba(215, 226, 243, 0.88);
@@ -1052,6 +1071,57 @@ h3 {
   max-width: 660px;
 }
 
+.contact-channel-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contact-channel-card {
+  background: var(--section);
+  border: 1px solid #dce7f8;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  min-height: 440px;
+  padding: 46px;
+}
+
+.contact-channel-card-support {
+  background: linear-gradient(145deg, #ffffff, var(--blue-tint));
+}
+
+.contact-channel-number {
+  align-items: center;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--blue-hover);
+  display: flex;
+  font-size: 0.72rem;
+  font-weight: 720;
+  height: 46px;
+  justify-content: center;
+  margin-bottom: 44px;
+  width: 46px;
+}
+
+.contact-channel-card h2 {
+  font-size: clamp(1.45rem, 2.5vw, 2.1rem);
+  margin-top: 14px;
+  overflow-wrap: anywhere;
+}
+
+.contact-channel-card > p:not(.eyebrow) {
+  margin: 18px 0 28px;
+}
+
+.contact-channel-card .button,
+.contact-channel-card .channel-status {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
 .channel-status {
   color: #72591b;
   font-size: 0.78rem;
@@ -1111,6 +1181,94 @@ h3 {
 }
 
 .support-channel > p {
+  font-size: 0.92rem;
+}
+
+.support-products {
+  margin-top: 88px;
+}
+
+.support-product-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.support-product-card {
+  align-items: center;
+  background: var(--section);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  padding: 30px 34px;
+}
+
+.support-product-card h3 {
+  font-size: 1.55rem;
+  margin-top: 8px;
+}
+
+.support-product-card > div > p:last-child {
+  font-size: 0.82rem;
+  margin-top: 8px;
+}
+
+.support-product-card nav {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.support-product-card nav a {
+  align-items: center;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--heading);
+  display: flex;
+  font-size: 0.78rem;
+  font-weight: 620;
+  gap: 8px;
+  justify-content: space-between;
+  min-height: 58px;
+  padding: 12px 14px;
+}
+
+.support-product-card nav svg {
+  color: var(--blue-hover);
+  flex: 0 0 auto;
+  height: 16px;
+  width: 16px;
+}
+
+.support-faq-panel {
+  --app-accent: var(--blue);
+  align-items: start;
+  background: linear-gradient(145deg, #ffffff, var(--section));
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  display: grid;
+  gap: 60px;
+  grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1.35fr);
+  margin-top: 88px;
+  padding: 48px;
+}
+
+.support-faq-panel h2 {
+  font-size: 2rem;
+  margin-top: 14px;
+}
+
+.support-channel-action {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-channel-action p {
   font-size: 0.92rem;
 }
 
@@ -2142,6 +2300,15 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .support-product-card,
+  .support-faq-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .support-product-card nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .footer-grid {
     grid-template-columns: 1.3fr repeat(3, 0.7fr);
     gap: 30px;
@@ -2279,7 +2446,9 @@ h3 {
 
   .editorial-grid,
   .support-grid,
-  .value-grid {
+  .value-grid,
+  .company-focus-grid,
+  .contact-channel-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2293,6 +2462,15 @@ h3 {
 
   .support-card {
     padding: 30px;
+  }
+
+  .contact-channel-card {
+    min-height: 0;
+    padding: 34px 28px;
+  }
+
+  .contact-channel-number {
+    margin-bottom: 32px;
   }
 
   .contact-panel {
@@ -2327,6 +2505,27 @@ h3 {
 
   .support-channel {
     margin-top: 48px;
+  }
+
+  .support-products,
+  .support-faq-panel {
+    margin-top: 64px;
+  }
+
+  .support-faq-panel {
+    gap: 34px;
+    padding: 30px 24px;
+  }
+
+  .support-product-card {
+    align-items: start;
+    gap: 24px;
+    padding: 26px 22px;
+  }
+
+  .support-product-card nav {
+    grid-template-columns: 1fr;
+    width: 100%;
   }
 
   .app-grid,
@@ -3309,6 +3508,14 @@ h3 {
 
 .legal-document > .legal-notice {
   margin-top: 28px;
+}
+
+.company-legal-document > .legal-notice {
+  margin-top: 0;
+}
+
+.company-legal-document > .legal-updated {
+  margin-top: 18px;
 }
 
 @media (max-width: 1180px) {

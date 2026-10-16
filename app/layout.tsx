@@ -47,8 +47,14 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: siteConfig.name,
   url: siteConfig.url,
-  email: siteConfig.contactEmail,
   description: siteConfig.description,
+  contactPoint: siteConfig.supportEmailVerified
+    ? {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: siteConfig.supportEmail,
+      }
+    : undefined,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

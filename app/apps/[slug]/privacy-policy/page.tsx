@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
 import { getPublicApp, publicApps } from "@/data/apps";
+import { createPageMetadata } from "@/lib/metadata";
 
 type PolicyPageProps = {
   params: Promise<{ slug: string }>;
@@ -20,15 +21,12 @@ export async function generateMetadata({ params }: PolicyPageProps): Promise<Met
   const app = getPublicApp(slug);
   if (!app?.privacyPolicy) return { title: "Policy not found", robots: { index: false } };
 
-  return {
+  return createPageMetadata({
     title: `${app.name} Privacy Policy`,
     description: `How ${app.privacyPolicy.publisherName} handles information when you use the ${app.name} Android application and related support services.`,
-    alternates: { canonical: `/apps/${app.slug}/privacy-policy` },
-    robots:
-      app.privacyPolicy.status === "final"
-        ? { index: true, follow: true }
-        : { index: false, follow: true },
-  };
+    path: `/apps/${app.slug}/privacy-policy`,
+    index: app.privacyPolicy.status === "final",
+  });
 }
 
 export default async function AppPrivacyPolicyPage({ params }: PolicyPageProps) {

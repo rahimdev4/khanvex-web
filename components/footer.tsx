@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { BrandMark } from "@/components/brand-mark";
-import { siteConfig } from "@/lib/site";
 
 const footerGroups = [
   {
@@ -33,7 +32,7 @@ export function Footer() {
             <BrandMark className="brand-mark" />
             <span>Khanvex</span>
           </Link>
-          <p>A publishing home for focused mobile applications.</p>
+          <p>Useful mobile applications for fitness, productivity, and everyday life.</p>
           <p className="footer-domain">khanvex.tech</p>
         </div>
 
@@ -50,9 +49,7 @@ export function Footer() {
       </div>
       <div className="shell footer-bottom">
         <p>© {new Date().getFullYear()} Khanvex. All rights reserved.</p>
-        <p>
-          Contact channels are published after verification. Current planned address: {siteConfig.contactEmail}
-        </p>
+        <p>Apps for better everyday experiences.</p>
       </div>
     </footer>
   );

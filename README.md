@@ -24,9 +24,9 @@ npm run build
 
 ## Content model
 
-Products belong in `data/apps.ts`. The public helpers expose an entry only when it is marked `published`, its public content is approved, and it includes an icon, screenshots, features, benefits, FAQs, official store links, a verified support address, and a product privacy policy.
+Products belong in `data/apps.ts`. Separate helpers control whether a product can be previewed publicly, indexed in search, or represented as released. This allows an approved pre-release product to be shown as “Coming Soon” without a store link or release claim.
 
-The registry is intentionally empty until real product material is supplied. While empty, `/apps` stays excluded from indexing and unknown product routes return the shared 404. A published entry automatically powers:
+GemFit is the current approved public preview. Its registry entry powers:
 
 - its collection card and optional homepage showcase;
 - `/apps/[slug]`;
@@ -34,13 +34,20 @@ The registry is intentionally empty until real product material is supplied. Whi
 - `/apps/[slug]/delete-account` when deletion instructions exist;
 - product routes in the sitemap.
 
-Company privacy and Terms pages are provisional and remain `noindex` until approved.
+Company-wide legal publication state is centralized in `data/company-policies.ts`. The company Privacy Policy and Terms of Service are complete drafts but remain `noindex` until owner and legal approval changes their status to `approved`.
 
 ## Environment
 
 The current static site requires no environment variables. If integrations are added, document variable names in `.env.example` and keep all `.env*` files except that example out of Git.
 
-Contact and support email addresses are configured in `lib/site.ts`. Their verification flags remain `false`, so the UI does not expose unverified `mailto:` actions.
+Contact and support email addresses are configured in `lib/site.ts`. `support@khanvex.tech` is confirmed as the monitored support channel. `hello@khanvex.tech` remains unverified and is not exposed as an active `mailto:` action.
+
+## Project handoff
+
+- SEO and Search Console preparation: `docs/seo-readiness.md`
+- Product and company content workflow: `docs/content-management.md`
+- Legal approval requirements: `docs/legal-review-checklist.md`
+- Production readiness and launch blockers: `docs/production-launch-checklist.md`
 
 ## Brand reference
 

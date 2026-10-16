@@ -5,25 +5,27 @@ import { ArrowIcon } from "@/components/arrow-icon";
 import { Cta } from "@/components/cta";
 import { PageHero } from "@/components/page-hero";
 import { ProductStage } from "@/components/product-stage";
-import { publicApps, publishedApps } from "@/data/apps";
+import { indexableApps, publicApps } from "@/data/apps";
+import { createPageMetadata } from "@/lib/metadata";
 
 const hasPublicApps = publicApps.length > 0;
-const hasReleasedApps = publishedApps.length > 0;
+const hasIndexableApps = indexableApps.length > 0;
 
-export const metadata: Metadata = {
-  title: "Apps",
-  description: "Explore mobile apps published by Khanvex.",
-  alternates: { canonical: "/apps" },
-  robots: hasReleasedApps ? { index: true, follow: true } : { index: false, follow: true },
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Khanvex Apps",
+  description:
+    "Explore Khanvex mobile applications, including current product previews, features, screenshots, availability, and support information.",
+  path: "/apps",
+  index: hasIndexableApps,
+});
 
 export default function AppsPage() {
   return (
     <>
-      <PageHero eyebrow="Khanvex apps" title="Focused apps, presented clearly.">
+      <PageHero eyebrow="Khanvex apps" title="Apps for everyday goals.">
         <p>
-          Explore approved Khanvex product previews and released applications.
-          Availability is shown clearly on each product page.
+          Discover useful mobile products for fitness, productivity, and
+          everyday life, with availability shown clearly on every app page.
         </p>
       </PageHero>
 
@@ -35,11 +37,11 @@ export default function AppsPage() {
             <div className="empty-state refined-empty-state">
               <ProductStage />
               <div className="empty-state-copy">
-                <p className="eyebrow">Portfolio in preparation</p>
-                <h2>No public applications yet.</h2>
+                <p className="eyebrow">Collection in preparation</p>
+                <h2>New applications are on the way.</h2>
                 <p>
-                  Product pages will appear here after their names, screenshots,
-                  store listings, support paths, and privacy information are approved.
+                  Khanvex is preparing its first products for release. Visit
+                  again for official previews and availability information.
                 </p>
                 <Link className="button" href="/about">
                   About Khanvex <ArrowIcon />

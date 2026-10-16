@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPublicApp, publicApps } from "@/data/apps";
+import { createPageMetadata } from "@/lib/metadata";
 
 type DeleteAccountPageProps = {
   params: Promise<{ slug: string }>;
@@ -19,12 +20,12 @@ export async function generateMetadata({ params }: DeleteAccountPageProps): Prom
   const app = getPublicApp(slug);
   if (!app?.accountDeletion) return { title: "Instructions not found", robots: { index: false } };
 
-  return {
+  return createPageMetadata({
     title: `Delete your ${app.name} account`,
     description: `Account deletion instructions for ${app.name}.`,
-    alternates: { canonical: `/apps/${app.slug}/delete-account` },
-    robots: { index: false, follow: true },
-  };
+    path: `/apps/${app.slug}/delete-account`,
+    index: false,
+  });
 }
 
 export default async function DeleteAccountPage({ params }: DeleteAccountPageProps) {
